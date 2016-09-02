@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>音乐跳动运动</title>
+		<script type="text/javascript" src="js/Util.js"></script>
+		<style>
+			#div{position: relative; left:100px;top: 500px; height: 500px;}
+			#div div{background:#000;width: 50px; height: 50px;position: absolute;}
+
+		</style>
+	</head>
+	<body>
+		<div id="div">
+			<div style="left:0px"></div>
+			<div style="left:50px; background:#f00"></div>
+			<div style="left:100px"></div>
+			<div style="left:150px; background:#f00"></div>
+			<div style="left:200px;"></div>
+			<div style="left:250px; background:#f00"></div>
+			<div style="left:300px;"></div>
+			<div style="left:350px; background:#f00"></div>
+			<div style="left:400px;"></div>
+			<div style="left:450px; background:#f00"></div>
+		</div>
+		<script type="text/javascript">
+			var node =document.getElementById('div');
+			EventUtil.addHandler(node,'mouseover',function(e){
+				e = EventUtil.getEvent(e);
+				var target = EventUtil.getTarget(e);
+				if(target.id != 'div'){
+					move(target,500,function(){
+						//doString
+					});
+				}
+			});
+			EventUtil.addHandler(node,'mouseout',function(e){
+				e = EventUtil.getEvent(e);
+				var target = EventUtil.getTarget(e);
+				if(target.id != 'div'){
+					move(target,50,function(){
+						//doString
+					});
+				}
+			});
+			EventUtil.addHandler(document,'keydown',function(e){
+				e = EventUtil.getEvent(e) ;
+				var target = keyCode(e.keyCode);
+				move(target,500,function(){
+					//doString
+				});
+			});
+			EventUtil.addHandler(document,'keyup',function(e){
+				e = EventUtil.getEvent(e);
+				var target = keyCode(e.keyCode);
+				move(target,50,function(){
+					//doString
+				})
+			})
+
+
+			function move(element,target,fn){
+				clearInterval(element.timer);
+				element.timer = setInterval(function(){
+					var currentTop = Math.round(parseFloat(DomUtil.getStyle(element,'top')));
+					var currentHeight = Math.round(parseFloat(DomUtil.getStyle(element,'height')));
+					var speed = (target - currentHeight)/10;
+					if(speed>0){
+						speed = Math.ceil(speed);
+					}else{
+						speed = Math.floor(speed);
+					}
+					if(currentHeight == target){
+						clearInterval(element.timer);
+						if(fn){
+							fn();
+						}
+					}else{
+						element.style.height =currentHeight +speed+'px';
+						element.style.top = currentTop -speed +'px';
+					}
+				},20);
+			}
+			function keyCode(code){
+				switch(code){
+					case 96:
+						return node.children[0];
+					case 97:
+						return node.children[1];
+					case 98:
+						return node.children[2];
+					case 99:
+						return node.children[3];
+					case 100:
+						return node.children[4];
+					case 101:
+						return node.children[5];
+					case 102:
+						return node.children[6];
+					case 103:
+						return node.children[7];
+					case 104:
+						return node.children[8];
+					case 105:
+						return node.children[9];
+					default:
+						return node.children[0];
+				}
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>跳动运动</title>
+		<script type="text/javascript" src="js/Util.js"></script>
+		<script type="text/javascript" src="js/animation.js"></script>
+		<style>
+			body,html{margin: 0;height:100%;}
+			#div{height: 100%;}
+			#div span{ width: 5px;height:5px;position: absolute;}
+		</style>
+	</head>
+	<body>
+		<div id="div">
+			
+		</div>
+		
+		<script type="text/javascript">
+			var divNode = document.getElementById('div');
+			//获取屏幕宽度和高度（屏幕抽风，不知原因的与获取值有5px的差）
+			var screenW = (document.documentElement.clientWidth||document.body.clientWidth)-5;
+			var screenH = (document.documentElement.clientHeight||document.body.clientHeight)-5;
+			//小方块数量
+			var num = Math.floor(screenH/5);
+			var divW = Math.floor(screenW/num);
+			//1.随机产生规定的小方块，并且随机颜色和位置
+			var nodeCollection = document.createDocumentFragment();
+			for(var i=0;i<num;i++){
+				var node = document.createElement('span');
+				node.className = i;
+				//颜色随机
+				var str="000000"+Math.floor(Math.random()*0x1000000).toString(16);
+				node.style.background = "#"+str.substr(-6);
+				//位置随机
+				var randomL = RandomUtil.getRandom(0,screenW);
+				var randomT = RandomUtil.getRandom(0,screenH);
+				node.style.left = randomL +'px';
+				node.style.top = randomT +'px';
+
+				nodeCollection.appendChild(node); 
+			}
+			divNode.appendChild(nodeCollection);
+
+			//2.计算并储存小方块距离右上角（0,0）的距离
+			var divChild = document.getElementsByTagName('span');
+			var divChildArr = DomUtil.nodeListToArray(divChild);
+			for(var j=0;j<divChildArr.length;j++){
+				var x = divChildArr[0].style.left.slice(0,-2);
+				var y = divChildArr[0].style.top.slice(0,-2);
+				divChildArr.toPointLength = x*x+y*y;
+			}
+			//3.根据小方块距离原点的距离排序(选择排序)，移动
+			EventUtil.addHandler(document,'click',function(){
+				var temp;
+				for(var k=0;k<divChildArr.length;k++){
+					for(var z=k+1;z<divChildArr.length;z++){
+						if(divChildArr[k].toPointLength > divChildArr[z].toPointLength){
+							temp = divChildArr[z];
+							divChildArr[z] =divChildArr[k];
+							divChildArr[k] = temp;
+						}
+					}
+					divChildArr[k].toPointLeft = k*divW;
+					divChildArr[k].toPointTop = k*5;
+					var target ={
+						left: k*divW,
+						top: k*5
+					}
+					move(divChildArr[k],target);
+				}
+			});
+			//3.快速排序实现
+			EventUtil.addHandler(document,'keydown',function(e){
+				e = EventUtil.getEvent(e);
+				if(e.keyCode == 13){
+					var newArr =quickSort(divChildArr);
+					console.log(newArr)
+					newArr.forEach(function(item,index){
+						if(Object.prototype.toString.call(item).slice(8,-1) != 'Array'){
+							var temp = item;
+						}else{
+							var temp = item[0];
+						}
+						
+						var target ={
+							left: index*divW,
+							top: index*5
+						}
+						move(temp,target);
+					})
+				}
+			});
+			function quickSort(arr){
+				if(arr.length<=1){
+					return arr;
+				}
+				var point = Math.floor(arr.length/2);
+				var pointer = arr.splice(point,1);
+				var left =[];
+				var right = [];
+				for(var i=0;i<arr.length;i++){
+					if(arr[i].toPointLength<pointer.toPointLength){
+						left.push(arr[i]);
+					}else{
+						right.push(arr[i]);
+					}
+				}
+				return quickSort(left).concat([pointer],quickSort(right));
+			}                                                                                                    
+
+
+		</script>
+	</body>
+</html>

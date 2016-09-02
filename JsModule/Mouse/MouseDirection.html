@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+	<head>
+		<meta chreset="utf-8"/>
+		<title>鼠标移入方向的判断</title>
+		<style>
+			div{width: 800px; height: 200px;border:1px solid #f00;}
+		</style>
+		<script type="text/javascript" src="../Util.js"></script>
+	</head>
+	<body>
+		
+		<div id="box"></div>
+		<script>
+			var box =document.getElementById('box');
+			mouseDirection(box);
+
+			/**
+			 * 鼠标移入方向的判断
+			 * @param  {[HTMLElement]} node [鼠标绑定的鼠标移入事件]
+			 * @return {[type]}             [description]
+			 */
+			function mouseDirection(node){
+				EventUtil.addHandler(box,'mousemove',function(e){
+					e = EventUtil.getEvent(e);
+					var target = EventUtil.getTarget(e);
+					var x =e.offsetX;
+					var y =e.offsetY;
+					//左上右下连线的斜率（过二四象限，肯定为负值）
+					var k = -target.offsetHeight/target.offsetWidth;
+					//左下右上连线斜率应该为上一条的负数，对称性。然后通过斜率比较判断方向
+					//k1即进入点的坐标和矩形中心的连线
+					var k1 = (y-target.offsetHeight/2)/(x-target.offsetWidth/2);
+					/*console.log('k:'+k)
+					console.log('k1:'+k1)*/
+					//k < k1 < -k鼠标一定是从左右方向移入，反之上下方向
+					if(k1 >k && k1< -k){
+						//target.offsetWidth/2 > x 左侧移入，反之右侧
+						if(target.offsetWidth/2>x){
+							console.log('左');
+						}else{
+							console.log('右');
+						}
+					}else{
+						//target.offsetHeight/2>y 上侧移入，反之下侧
+						if(target.offsetHeight/2>y){
+							console.log('上');
+						}else{
+							console.log('下');
+						}
+					}
+				});
+			}
+		</script>
+	</body>
+</html>

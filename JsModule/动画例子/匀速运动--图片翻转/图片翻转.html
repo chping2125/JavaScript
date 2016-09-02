@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>图片翻转</title>
+		<script type="text/javascript" src="js/Util.js"></script>
+		<style>
+			#box{position:relative;width:400px;height:260px;margin: 50px auto;border:1px solid #f00;}
+			img{position:absolute;}
+			.cover{position: absolute;width:400px;height:260px;top:0;left:0;}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<img src="img/1.jpg" width="400"/>
+			<div class="cover"></div>
+		</div>
+		<script>
+			var node = document.getElementById('box');
+			var interval =0;
+			var speed = 20;
+			EventUtil.addHandler(node,'mouseover',handler);
+			EventUtil.addHandler(node,'mouseout',handler2);
+			function handler(){
+				clearInterval(interval);
+				interval = setInterval(function(){
+					var currentH = parseInt(DomUtil.getStyle(node.children[0],'height'));
+					var currentT = parseInt(DomUtil.getStyle(node.children[0],'top'));
+					if(!currentT){
+						currentT =0;
+					}
+					if(!currentH){
+						currentH =0;
+					}
+					//判断是缩小还是增大阶段
+					if(speed >0){
+						//缩小阶段:判断缩小的极限值
+						if(currentH <= 20){
+							//照片的切换
+							if(parseInt(node.children[0].src.substr(-5,1)) == 1){
+								node.children[0].src='img/2.jpg';
+							}else{
+								node.children[0].src='img/1.jpg';
+							}
+							speed =-speed;
+						}else{
+							node.children[0].style.height = currentH -speed +"px";
+							node.children[0].style.top= currentT +speed/2 +'px';
+						}
+					}else{
+						//增大阶段:判断放大的极限值
+						if(currentH == 260){
+							clearInterval(interval);
+							speed = -speed;
+						}else{
+							node.children[0].style.height = currentH -speed +"px";
+							node.children[0].style.top= currentT +speed/2 +'px';
+						}
+					}
+					
+				},100);
+			}
+			function handler2(){
+				clearInterval(interval);
+				speed = -speed;
+				handler();
+			}
+		</script>
+	</body>
+</html>

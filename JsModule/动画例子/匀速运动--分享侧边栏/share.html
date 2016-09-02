@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title></title>
+		<script type="text/javascript" src="js/Util.js"></script>
+		<style>
+			body,ul,li{margin:0;padding:0;}
+			.share{position:absolute;top: 100px;left:-120px;}
+			.share ul{float:left;background:red;width: 100px;height: 120px;padding: 10px;}
+			.share li{padding: 5px 0;cursor: pointer}
+			.share li:hover{background: yellow;}
+			.share span{float: left;background:blue;width: 30px;height: 120px;text-align: center;padding-top:20px;}
+			.shareCss:hover{left:0;}
+			#share{top:300px;}
+		</style>
+	</head>
+	<body>
+		<div class="share shareCss">
+			<ul>
+				<li>微博</li>
+				<li>微信</li>
+				<li>QQ</li>
+				<li>人人</li>
+			</ul>
+			<span>分享css实现</span>
+		</div>
+		<div class="share" id="share" style="left:-120px">
+			<ul>
+				<li>微博</li>
+				<li>微信</li>
+				<li>QQ</li>
+				<li>人人</li>
+			</ul>
+			<span>分享js实现</span>
+		</div>
+		<script>
+			var shareNode = document.getElementById('share');
+			var interval=0;
+			var sudu = 10;
+			EventUtil.addHandler(shareNode,'mouseover',function(e){
+				var divNode = this;
+				clearInterval(interval);
+				interval = setInterval(function(){
+					var leftV = parseInt(divNode.style.left.slice(0,-2));
+					if(leftV + sudu>=0){
+						clearInterval(interval);
+						divNode.style.left = 0+'px';
+					}else{
+						divNode.style.left = leftV+sudu+'px';
+					}
+				},60)
+			});
+			EventUtil.addHandler(shareNode,'mouseout',function(){
+				var divNode = this;
+				clearInterval(interval);
+				interval = setInterval(function(){
+					var leftV = parseInt(divNode.style.left.slice(0,-2));
+					if(leftV - sudu <= -120){
+						clearInterval(interval);
+						divNode.style.left = -120+'px';
+					}else{
+						divNode.style.left = leftV-sudu+'px';
+					}
+				},60)
+			});
+		</script>
+	</body>
+</html>

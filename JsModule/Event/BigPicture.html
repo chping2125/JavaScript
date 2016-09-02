@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+	<head>
+		<meta chreset="utf-8"/>
+		<title>图片放大</title>
+		<style>
+			ul{overflow:hidden;}
+			li{list-style:none;float:left;}
+			div{width: 200px; height: 200px;position:absolute; left:-9999px;top:0;border:1px solid #f00;}
+		</style>
+		<script type="text/javascript" src="../Util.js"></script>
+	</head>
+	<body>
+		<ul id="ul">
+			<li><img src="images/shirt_1.jpg" width="170" height="170"/></li>
+			<li><img src="images/shirt_2.jpg" width="170" height="170"/></li>
+			<li><img src="images/shirt_3.jpg" width="170" height="170"/></li>
+			<li><img src="images/shirt_4.jpg" width="170" height="170"/></li>
+		</ul>
+		<div id="imgBig"></div>
+		<script>
+			var node =document.getElementById('ul');
+			var imgBig =document.getElementById('imgBig');
+			biggerPicture(node,400,400,imgBig,200,200)
+
+
+
+			/**
+			 * 图片局部放大功能
+			 * 注意：修改img的路径、放大图片通过背景引入
+			 * @param  {[HTMLElement]} imgParentNode    [放大图片的父节点，采用事件委托机制]
+			 * @param  {[number]}      bigImgWidth      [需要放大的图片宽]
+			 * @param  {[number]}      bigImgHeight     [需要放大的图片高]
+			 * @param  {[HTMLElement]} bigImgNode       [承载放大图片的作为背景的节点]
+			 * @param  {[number]}      bigImgNodeWidth  [承载放大图片的作为背景的节点的宽]
+			 * @param  {[number]}      bigImgNodeHeight [承载放大图片的作为背景的节点的高]
+			 * @return {[type]}                  [description]
+			 */
+			function biggerPicture(imgParentNode,bigImgWidth,bigImgHeight,bigImgNode,bigImgNodeWidth,bigImgNodeHeight){
+				//imgParentNode先绑定mouseover移入事件，后触发mousemove移动事件
+				EventUtil.addHandler(imgParentNode,'mouseover',function(){
+					EventUtil.addHandler(imgParentNode,'mousemove',handler);
+				});
+				function handler(event){
+					event = EventUtil.getEvent(event);
+					var target = EventUtil.getTarget(event);
+					//避免img的父元素执行该操作产生错误
+					if(target.nodeName.toLowerCase() =='img'){
+						/**
+						 *    让鼠标在目标图片上的位置始终显示在imgBigNode的中间位置
+						 *    
+						 *实现原理：
+						 *1.垂直方向上让鼠标在小图片上的位置始终显示在bigImgNode的最顶端，
+						 *  公式：鼠标距离小图片顶端距离/小图片的高度=大图片距离顶端位置/大图片的宽度
+						 *
+						 *2.垂直方向上让鼠标在小图片上的位置始终显示在bigImgNode的垂直居中
+						 *  背景图片位置向上在移动bigImgNode高度的一半即可.
+						 *
+						 *水平方向居中显示同垂直居中显示。
+						 *
+						 * event.offsetX:鼠标距离小图片顶端距离
+						 * target.offsetWidth:小图片的高度
+						 * 
+						*/
+						var bgLeft = event.offsetX/target.offsetWidth*bigImgWidth -bigImgNodeWidth/2;
+						var bgTop = event.offsetY/target.offsetHeight*bigImgHeight -bigImgNodeHeight/2;
+						//将计算后的结果设置到bigImgNode节点的背景图上
+						bigImgNode.style.background= 'url(images/shirt_'+target.src.slice(-5,-4)+'_big.jpg) no-repeat -'+bgLeft+'px -'+bgTop+'px';
+						
+						//背景图的边界处理，避免左移或下移过多导致留白
+						if((target.offsetWidth-event.offsetX)<((bigImgNodeWidth/2)/bigImgWidth*target.offsetWidth)){
+						 	bigImgNode.style.background= 'url(images/shirt_'+target.src.slice(-5,-4)+'_big.jpg) no-repeat -'+(bigImgWidth-bigImgNodeWidth)+'px -'+bgTop+'px';
+						 	console.log(bigImgNode.style.background)
+						}
+						if((target.offsetHeight-event.offsetY)<((bigImgNodeHeight/2)/bigImgHeight*target.offsetHeight)){
+						 	bigImgNode.style.background= 'url(images/shirt_'+target.src.slice(-5,-4)+'_big.jpg) no-repeat -'+bgLeft+'px -'+(bigImgHeight-bigImgNodeHeight)+'px';
+						}
+						//控制bigImgNode跟随鼠标移动，但是有一个10px的间距，是为了解决鼠标右下角滑动时误
+						//操作进入bigImgNode节点，从而出发imgNode节点的mouseout事件引起的闪烁BUG.
+						var leftV = event.clientX +10;
+						var topV = event.clientY +10;
+						bigImgNode.style.left= leftV +'px';
+						bigImgNode.style.top= topV +'px';
+					}
+				}
+				//鼠标移出imgParentNode则隐藏bigImgNode
+				EventUtil.addHandler(imgParentNode,'mouseout',function(event){
+					event = EventUtil.getEvent(event);
+					var target = EventUtil.getTarget(event);
+					if(target.nodeName.toLowerCase() =='img'){
+						imgBig.style.left= '-9999px';
+						imgBig.style.top= 0;
+					}
+				});
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>动画广告</title>
+		<script type="text/javascript" src="js/Util.js"></script>
+	</head>
+	<body>
+		<div id="box" style="width: 100px;height:60px;position:absolute;left:0;top:0;border:1px solid #f00">
+			你好，看这里
+		</div>
+
+		<script>
+			//获取屏幕高度和宽度
+			var screenW = WindowUtil.getPageWidth()-120;
+			var screenH = WindowUtil.getPageHeight()-60;
+			window.onload = function(){
+				var node = document.getElementById('box');
+				var target = {
+					leftStart: 0,
+					topStart: 0,
+					leftEnd: screenW,
+					topEnd: screenH
+				}
+				move(node,target,1,2);
+			}
+
+			/**
+			 * [动画广告]
+			 * @param  {[Element]} element [需要运动的节点]
+			 * @param  {[Object]}  target  [限制位置区域对象]
+			 * @param  {[number]}  speedX  [每次水平移动的距离（大小尽量<5）]
+			 * @param  {[number]}  speedY  [每次垂直移动的距离（大小尽量<5）]
+			 * 
+			 */
+			function move(element,target,speedX,speedY){
+				clearInterval(element.timer);
+				element.speedL = speedX;
+				element.speedT = speedY;
+				element.timer = setInterval(function(){
+					var currentL = Math.round(parseFloat(DomUtil.getStyle(element,'left')));
+					var currentT = Math.round(parseFloat(DomUtil.getStyle(element,'top')));
+
+					if(currentL+element.speedL >= target.leftEnd){
+						element.speedL =-element.speedL;
+					}else if(currentL+element.speedL <= target.leftStart){
+						element.speedL =-element.speedL;
+					}else if(currentT+element.speedT >= target.topEnd){
+						element.speedT =-element.speedT;
+					}else if(currentT+element.speedT <= target.topStart){
+						element.speedT =-element.speedT;
+					}else{
+						element.style.left= currentL +element.speedL+'px';
+						element.style.top= currentT +element.speedT+'px';
+					}
+				},15);
+			}
+		</script>
+	</body>
+</html>
