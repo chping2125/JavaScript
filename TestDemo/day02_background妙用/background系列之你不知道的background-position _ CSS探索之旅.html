@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<!-- saved from url=(0139)http://blog.doyoe.com/2016/03/28/css/background%E7%B3%BB%E5%88%97%E4%B9%8B%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84background-position/ -->
+<html class="theme-next use-motion theme-next-mist"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="apple-touch-icon" href="http://blog.doyoe.com/2016/03/28/css/background%E7%B3%BB%E5%88%97%E4%B9%8B%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84background-position/icon.png">
+<link rel="apple-touch-icon-precomposed" href="http://blog.doyoe.com/2016/03/28/css/background%E7%B3%BB%E5%88%97%E4%B9%8B%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84background-position/icon.png">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="./background系列之你不知道的background-position _ CSS探索之旅_files/jquery.fancybox.css">
+
+
+
+
+<link rel="stylesheet" type="text/css" href="./background系列之你不知道的background-position _ CSS探索之旅_files/main.css">
+
+
+    <meta name="description" content="CSS探索之旅带你领略CSS世界的极致之美">
+
+
+
+  <meta name="keywords" content="CSS应用,background,background-position,w3c,">
+
+
+
+  <link rel="alternate" href="http://blog.doyoe.com/atom.xml" title="CSS探索之旅" type="application/atom+xml">
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="http://blog.doyoe.com/favicon.ico?v=0.4.5.1">
+
+
+<meta name="description" content="这是一个有趣的话题其实我并不确切的平时大家是怎么去应用或者玩转一个属性，一个值。我能肯定的是这些东西都有不少的可玩性。
+我今天要聊的 background-position 应该已经被大家玩得色彩斑斓了。尤其是 CSS Sprites 流行的这些年，background-position 基本上是被应用最多的属性之一。
+重拾旧趣我们知道 background-position 是用来指定背景图像的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="background系列之你不知道的background-position">
+<meta property="og:url" content="http://blog.doyoe.com/2016/03/28/css/background系列之你不知道的background-position/index.html">
+<meta property="og:site_name" content="CSS探索之旅">
+<meta property="og:description" content="这是一个有趣的话题其实我并不确切的平时大家是怎么去应用或者玩转一个属性，一个值。我能肯定的是这些东西都有不少的可玩性。
+我今天要聊的 background-position 应该已经被大家玩得色彩斑斓了。尤其是 CSS Sprites 流行的这些年，background-position 基本上是被应用最多的属性之一。
+重拾旧趣我们知道 background-position 是用来指定背景图像的">
+<meta property="og:image" content="http://demo.doyoe.com/css3/background-position/skin/text-image.png">
+<meta property="og:image" content="http://demo.doyoe.com/css3/background-position/skin/normal.png">
+<meta property="og:image" content="http://demo.doyoe.com/css3/background-position/skin/percentage.png">
+<meta property="og:image" content="http://demo.doyoe.com/css3/background-position/skin/normal.png">
+<meta property="og:image" content="http://demo.doyoe.com/css3/background-position/skin/multi-value.png">
+<meta property="og:updated_time" content="2016-03-29T02:39:19.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="background系列之你不知道的background-position">
+<meta name="twitter:description" content="这是一个有趣的话题其实我并不确切的平时大家是怎么去应用或者玩转一个属性，一个值。我能肯定的是这些东西都有不少的可玩性。
+我今天要聊的 background-position 应该已经被大家玩得色彩斑斓了。尤其是 CSS Sprites 流行的这些年，background-position 基本上是被应用最多的属性之一。
+重拾旧趣我们知道 background-position 是用来指定背景图像的">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'always'
+  };
+</script>
+
+  <title> background系列之你不知道的background-position | CSS探索之旅 </title>
+<script type="text/javascript" async="" src="./background系列之你不知道的background-position _ CSS探索之旅_files/embed.js" charset="UTF-8"></script><style type="text/css">.fancybox-margin{margin-right:0px;}</style><link type="text/css" rel="stylesheet" href="./background系列之你不知道的background-position _ CSS探索之旅_files/embed.default.css"></head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans" class="" style="padding-right: 320px;">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i class="" style="transform: translateX(100%);"></i></span>
+  <a href="http://blog.doyoe.com/" class="brand" rel="start" style="opacity: 1;">
+      <span class="logo" style="opacity: 1; top: 0px;">
+        <i class="icon-next-logo"></i>
+      </span>
+      <span class="site-title" style="opacity: 1; top: 0px;">CSS探索之旅</span>
+  </a>
+  <span class="logo-line-after"><i class="" style="transform: translateX(-100%);"></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home" style="opacity: 1; transform: translateY(0px);">
+          <a href="http://blog.doyoe.com/" rel="section">
+            <i class="menu-item-icon icon-next-home"></i> <br>
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories" style="opacity: 1; transform: translateY(0px);">
+          <a href="http://blog.doyoe.com/categories" rel="section">
+            <i class="menu-item-icon icon-next-categories"></i> <br>
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives" style="opacity: 1; transform: translateY(0px);">
+          <a href="http://blog.doyoe.com/archives" rel="section">
+            <i class="menu-item-icon icon-next-archives"></i> <br>
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags" style="opacity: 1; transform: translateY(0px);">
+          <a href="http://blog.doyoe.com/tags" rel="section">
+            <i class="menu-item-icon icon-next-tags"></i> <br>
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about" style="opacity: 1; transform: translateY(0px);">
+          <a href="http://blog.doyoe.com/about/" rel="section">
+            <i class="menu-item-icon icon-next-about"></i> <br>
+            关于
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article" style="opacity: 1; display: block; transform: translateY(0px);">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              background系列之你不知道的background-position
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2016-03-28T11:15:00+08:00" content="2016-03-28">
+            2016-03-28
+          </time>
+        </span>
+
+        
+        <span class="post-time">
+          &nbsp; | &nbsp; 杜瑶
+        </span>
+        
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing">
+                <a href="http://blog.doyoe.com/categories/CSS/" itemprop="url" rel="index">
+                  <span itemprop="name">CSS</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="http://blog.doyoe.com/2016/03/28/css/background%E7%B3%BB%E5%88%97%E4%B9%8B%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84background-position/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/28/css/background系列之你不知道的background-position/" itemprop="commentsCount">10条评论</span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h2 id="这是一个有趣的话题">这是一个有趣的话题</h2><p>其实我并不确切的平时大家是怎么去应用或者玩转一个属性，一个值。我能肯定的是这些东西都有不少的可玩性。</p>
+<p>我今天要聊的 <code>background-position</code> 应该已经被大家玩得色彩斑斓了。尤其是 <code>CSS Sprites</code> 流行的这些年，<code>background-position</code> 基本上是被应用最多的属性之一。</p>
+<h2 id="重拾旧趣">重拾旧趣</h2><p>我们知道 <code>background-position</code> 是用来指定背景图像的偏移值的，能让一张图从特定的位置开始展现。而 <code>CSS Sprites</code> 就是通过将多个小图拼接成一张大图，然后利用 <code>background-position</code> 来指定需要显示的区域，以此达到合并HTTP请求的预期。</p>
+<a id="more"></a>
+<h2 id="一个足够简单的应用">一个足够简单的应用</h2><p>为了回顾 <code>background-position</code> 的应用，接下来我将会用一个最简单的例子来代入，这里有一张由2个 <code>300*100px</code> 垂直拼接而成的图片作为背景图，如 <code>图0</code>：</p>
+<p><a href="./background系列之你不知道的background-position _ CSS探索之旅_files/text-image.png" class="fancybox" title="图0：简单的文字图片"><img src="./background系列之你不知道的background-position _ CSS探索之旅_files/text-image.png" alt="图0：简单的文字图片"><div class="pic-title"><span>图0：简单的文字图片</span></div></a></p>
+<p>我现在需要 <code>图0</code> 在2个并排的div中分别显示不同的部分：</p>
+<h3 id="HTML:">HTML:</h3><figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"part1"</span>&gt;</span><span class="comment">&lt;!-- 显示图0上半部分 --&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"part2"</span>&gt;</span><span class="comment">&lt;!-- 显示图0下半部分 --&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+<p>于是我写了段简单的CSS，如下：</p>
+<h3 id="CSS:">CSS:</h3><figure class="highlight css"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">div</span> <span class="rules">{</span><br><span class="line">    <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">300px</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">100px</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">background</span>:<span class="value"> gray <span class="function">url</span>(../test.png) no-repeat</span></span>;</span><br><span class="line">}</span></span><br><span class="line"><span class="class">.part1</span> <span class="rules">{</span><br><span class="line">    <span class="rule"><span class="attribute">background-position</span>:<span class="value"> <span class="number">0</span> <span class="number">0</span></span></span>;</span><br><span class="line">}</span></span><br><span class="line"><span class="class">.part2</span> <span class="rules">{</span><br><span class="line">    <span class="rule"><span class="attribute">background-position</span>:<span class="value"> <span class="number">0</span> -<span class="number">100px</span></span></span>;</span><br><span class="line">}</span></span><br></pre></td></tr></tbody></table></figure>
+<p>很显然我可以得到预期，效果如 <code>图1</code>：</p>
+<p><a href="./background系列之你不知道的background-position _ CSS探索之旅_files/normal.png" class="fancybox" title="图1：简单的CSS Sprites应用"><img src="./background系列之你不知道的background-position _ CSS探索之旅_files/normal.png" alt="图1：简单的CSS Sprites应用"><div class="pic-title"><span>图1：简单的CSS Sprites应用</span></div></a></p>
+<p>这就是最典型的 <code>CSS Sprites</code> 使用场景。当然，你可以在线查看这个例子 <code>Demo1</code> <a href="http://demo.doyoe.com/css3/background-position/normal.htm" target="_blank" rel="external">最简单的 background-position 应用</a>。</p>
+<h2 id="默认值">默认值</h2><p>由于 <code>background-position</code> 的默认值是 <code>0% 0%</code>，那么上述的CSS代码其实可以优化成：</p>
+<figure class="highlight css"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.part2</span> <span class="rules">{</span><br><span class="line">    <span class="rule"><span class="attribute">background-position</span>:<span class="value"> <span class="number">0</span> -<span class="number">100px</span></span></span>;</span><br><span class="line">}</span></span><br></pre></td></tr></tbody></table></figure>
+<p>因为 <code>.part1</code> 指定的值是 <code>0 0</code>，和默认值相同，所以可以省略。你会发现，对一个属性了解得更多，就更能帮助你写出简洁的代码。</p>
+<h2 id="百分比">百分比</h2><p>我并不能确定大家是否使用过 <code>background-position</code> 的百分比，这里就权当大家对此并不甚了解。</p>
+<h3 id="试着使用百分比去实现上个例子">试着使用百分比去实现上个例子</h3><p>我相信肯定有童鞋会这样写：</p>
+<figure class="highlight css"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.part2</span> <span class="rules">{</span><br><span class="line">    <span class="comment">/* background-position: 0 -100px; */</span></span><br><span class="line">    <span class="rule"><span class="attribute">background-position</span>:<span class="value"> <span class="number">0</span> -<span class="number">50%</span></span></span>;</span><br><span class="line">}</span></span><br></pre></td></tr></tbody></table></figure>
+<p>按照一般的思维，上述两行代码应该是等价的，不是么？在开篇的时候我们就说了背景图 <code>图0</code> 的高度是 <code>200px</code>，那么 <code>-50%</code> 正好是 <code>-100px</code>。</p>
+<p>不用着急，我们会用实际的例子来验证这个结果，来看 <code>Demo2</code> <a href="http://demo.doyoe.com/css3/background-position/percentage.htm" target="_blank" rel="external">检验 background-position 的百分比值</a>。</p>
+<p><a href="./background系列之你不知道的background-position _ CSS探索之旅_files/percentage.png" class="fancybox" title="图2：参照尺寸验证"><img src="./background系列之你不知道的background-position _ CSS探索之旅_files/percentage.png" alt="图2：参照尺寸验证"><div class="pic-title"><span>图2：参照尺寸验证</span></div></a></p>
+<p>结果让人有点忧伤，这和我们的设想有点出入，这是为什么呢？</p>
+<h3 id="追本溯源">追本溯源</h3><p>我们都知道一个百分比值，必然会需要有一个参照尺寸。举个例子来讲，假设我定义一个元素的宽度是 <code>50%</code>，那么这个元素的具体宽度就是：<code>包含块宽度 * 50%</code>。</p>
+<p>所以，如果你需要使用百分比作为 <code>background-position</code> 的值，必须清楚它的参照尺寸是什么。</p>
+<p><code>w3c</code> 是这样描述 <code>background-position</code> 比分比值的：</p>
+<blockquote>
+<p>原文：refer to size of background positioning area minus size of background image.</p>
+<p>翻译：参照指定背景区域的尺寸减去背景图片的尺寸</p>
+</blockquote>
+<p>这是什么意思呢？白话一点说：<code>background-position</code> 的百分比值参照的是设置背景的区域减去背景图的尺寸。</p>
+<h3 id="再出发">再出发</h3><p>按照这个思路，我们将：</p>
+<figure class="highlight css"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.part2</span> <span class="rules">{</span><br><span class="line">    <span class="rule"><span class="attribute">background-position</span>:<span class="value"> <span class="number">0</span> -<span class="number">50%</span></span></span>;</span><br><span class="line">}</span></span><br></pre></td></tr></tbody></table></figure>
+<p>换算一下将会得到：</p>
+<figure class="highlight css"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.part2</span> <span class="rules">{</span><br><span class="line">    <span class="rule"><span class="attribute">background-position</span>:<span class="value"> <span class="number">0</span> <span class="number">50px</span></span></span>;</span><br><span class="line">}</span></span><br></pre></td></tr></tbody></table></figure>
+<p>换算过程为：(设置背景的区域高度 - 背景图的高度) * -50%，即：(100 - 200) * -50% = 50px</p>
+<p>这就解释了 <code>Demo2</code> 为什么会得到 <code>图2</code> 的效果。但这显然并不是我们想要的，我们预期的效果是 <code>图1</code>。</p>
+<p>根据上述的公式，我们可以逆推预期效果的百分比值是多少：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-<span class="number">100</span> / (<span class="number">100</span> - <span class="number">200</span>) = <span class="number">100</span>%</span><br></pre></td></tr></tbody></table></figure>
+<p>所以如果你要使用百分比，那么定义应该是这样的：</p>
+<figure class="highlight css"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.part2</span> <span class="rules">{</span><br><span class="line">    <span class="rule"><span class="attribute">background-position</span>:<span class="value"> <span class="number">0</span> <span class="number">100%</span></span></span>;</span><br><span class="line">}</span></span><br></pre></td></tr></tbody></table></figure>
+<p>其结果如 <code>Demo3</code> <a href="http://demo.doyoe.com/css3/background-position/percentage-value.htm" target="_blank" rel="external">正确使用 background-position 百分比</a></p>
+<p>这会终于得到我们的预期效果了，请看 <code>图3</code></p>
+<p><a href="./background系列之你不知道的background-position _ CSS探索之旅_files/normal.png" class="fancybox" title="图3：百分比的正确预期效果"><img src="./background系列之你不知道的background-position _ CSS探索之旅_files/normal.png" alt="图3：百分比的正确预期效果"><div class="pic-title"><span>图3：百分比的正确预期效果</span></div></a></p>
+<p>了解了百分比的这个特性后，会帮助我们大大简化某些定义，比如我在 <a href="https://github.com/doyoe/Yo" target="_blank" rel="external">Yo</a> 里面对 <a href="http://blog.doyoe.com/Yo/demo/element/yo-score.html">yo-score</a> 的处理，非常巧妙，有兴趣的童鞋可以自己研究一下，这里不细讲。</p>
+<p>另外：需要注意的是百分比值会受 <code>background-size</code> 影响，因为 <code>background-size</code> 可以改变背景图像的大小。</p>
+<h2 id="多值">多值</h2><p>在 <code>CSS3</code> 中，对 <code>background-position</code> 属性进行了扩展，允许接受3到4个参数，用于指定背景图的起始方向和具体位置。</p>
+<blockquote>
+<p>原文：If three or four values are given, then each &lt;percentage&gt; or &lt;length&gt; represents an offset and must be preceded by a keyword, which specifies from which edge the offset is given.</p>
+<p>翻译：如果指定了三个或四个值，那么每个 &lt;percentage&gt; 或 &lt;length&gt; 之前必须有一个关键字，用于指定该方向的偏移量。</p>
+</blockquote>
+<p>当指定3到4个参数时，不接受 <code>center</code> 关键字作为偏移量作为边界，只能使用 <code>top, right, bottom, left</code> 这4个关键字。</p>
+<h3 id="多值的意义">多值的意义</h3><p>在此前，我们使用 <code>background-position</code> 只能让背景图从 <code>top, right, bottom, left, center</code> 这5个边界开始显示，但无法指定任意一个边界的偏移量。</p>
+<p>举个例子：我想让一个背景图从右下角偏移 <code>20px</code></p>
+<p>你会发现如果没有多值扩展，你很难轻易做到这件事，除非你能确定容器的宽高永远都是显式定义好的，就算如此，其灵活性也一文不值。</p>
+<h3 id="多值的应用">多值的应用</h3><p>如果利用多值特性，这将变得非常轻松，我们仍使用 <code>图0</code> 作为背景图，来做一个演示。</p>
+<figure class="highlight css"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.demo</span> <span class="rules">{</span><br><span class="line">    <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">400px</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">400px</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="function">url</span>(../test.png) no-repeat</span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">background-position</span>:<span class="value"> right -<span class="number">300px</span> bottom <span class="number">20px</span></span></span>;</span><br><span class="line">}</span></span><br></pre></td></tr></tbody></table></figure>
+<p>这会终于得到我们的预期效果了，请看 <code>图4</code></p>
+<p><a href="./background系列之你不知道的background-position _ CSS探索之旅_files/multi-value.png" class="fancybox" title="图4：背景图多值应用"><img src="./background系列之你不知道的background-position _ CSS探索之旅_files/multi-value.png" alt="图4：背景图多值应用"><div class="pic-title"><span>图4：背景图多值应用</span></div></a></p>
+<p>效果可以查看 <code>Demo4</code> <a href="http://demo.doyoe.com/css3/background-position/multi-value.htm" target="_blank" rel="external">background-position 边界偏移</a>。实际上，有了多值之后，我们可以让背景图在任意方位上偏移，你可能会发现，这甚至可以让你的结构写得更简单，嵌套变浅。</p>
+<h2 id="写在最后">写在最后</h2><p>当你深入了解了每个属性的每个定义，你的CSS世界又会变得和以前不一样。enjoy it.</p>
+<h2 id="background系列文章：">background系列文章：</h2><ul>
+<li><a href="http://blog.doyoe.com/2016/03/28/css/background%E7%B3%BB%E5%88%97%E4%B9%8B%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84background-position/">background系列之你不知道的background-position</a></li>
+</ul>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+
+      
+        <div class="post-tags">
+          
+            <a href="http://blog.doyoe.com/tags/CSS%E5%BA%94%E7%94%A8/" rel="tag">#CSS应用</a>
+          
+            <a href="http://blog.doyoe.com/tags/background/" rel="tag">#background</a>
+          
+            <a href="http://blog.doyoe.com/tags/background-position/" rel="tag">#background-position</a>
+          
+            <a href="http://blog.doyoe.com/tags/w3c/" rel="tag">#w3c</a>
+          
+        </div>
+      
+
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="http://blog.doyoe.com/2016/04/11/css/background%E7%B3%BB%E5%88%97%E4%B9%8B%E6%97%A0%E5%A4%84%E4%B8%8D%E5%9C%A8%E7%9A%84%E5%A6%99%E8%B6%A3/" rel="prev">background系列之无处不在的妙趣</a>
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="http://blog.doyoe.com/2015/10/20/mobile/%E7%A7%BB%E5%8A%A8%E5%89%8D%E7%AB%AF%E7%AC%AC%E4%BA%8C%E5%BC%B9%EF%BC%9A%E5%96%84%E7%94%A8meta/" rel="next">移动前端第二弹：善用meta</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2016/03/28/css/background系列之你不知道的background-position/" data-title="background系列之你不知道的background-position" data-url="http://blog.doyoe.com/2016/03/28/css/background系列之你不知道的background-position/" id="ds-thread">
+              <div id="ds-reset"><div class="ds-meta" style="display: none;"><a href="javascript:void(0)" class="ds-like-thread-button ds-rounded"><span class="ds-icon ds-icon-heart"></span> <span class="ds-thread-like-text">喜欢</span><span class="ds-thread-cancel-like">取消喜欢</span></a><span class="ds-like-panel"></span></div><div class="ds-rounded" id="ds-hot-posts"><div class="ds-header ds-gradient-bg">被顶起来的评论</div><ul><li class="ds-post" data-post-id="6267040909871809281"><div class="ds-post-self" data-post-id="6267040909871809281" data-thread-id="6266972209378493185" data-root-id="0" data-source="duoshuo"><div class="ds-avatar" data-user-id="8353055"><a rel="nofollow author" target="_blank" href="http://weibo.com/wongdragon" onclick="this.href=&#39;http://doyoe.duoshuo.com/user-url/?user_id=8353055&#39;;" title="王大根"><img src="./background系列之你不知道的background-position _ CSS探索之旅_files/1" alt="王大根"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://weibo.com/wongdragon" onclick="this.href=&#39;http://doyoe.duoshuo.com/user-url/?user_id=8353055&#39;;" rel="nofollow" target="_blank" data-user-id="8353055">王大根</a></div><p>斯阔以！好崇拜瑶姐！</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-03-28T17:59:28+08:00" title="2016年3月28日 下午5:59:28">3月28日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶(3)</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li></ul></div><div class="ds-comments-info"><div class="ds-sort"><a class="ds-order-desc">最新</a><a class="ds-order-asc ds-current">最早</a><a class="ds-order-hot">最热</a></div><ul class="ds-comments-tabs"><li class="ds-tab"><a class="ds-comments-tab-duoshuo ds-current" href="javascript:void(0);"><span class="ds-highlight">10</span>条评论</a></li>  </ul></div><ul class="ds-comments"><li class="ds-post" data-post-id="6267040909871809281"><div class="ds-post-self" data-post-id="6267040909871809281" data-thread-id="6266972209378493185" data-root-id="0" data-source="duoshuo"><div class="ds-avatar" data-user-id="8353055"><a rel="nofollow author" target="_blank" href="http://weibo.com/wongdragon" onclick="this.href=&#39;http://doyoe.duoshuo.com/user-url/?user_id=8353055&#39;;" title="王大根"><img src="./background系列之你不知道的background-position _ CSS探索之旅_files/1" alt="王大根"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://weibo.com/wongdragon" onclick="this.href=&#39;http://doyoe.duoshuo.com/user-url/?user_id=8353055&#39;;" rel="nofollow" target="_blank" data-user-id="8353055">王大根</a></div><p>斯阔以！好崇拜瑶姐！</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-03-28T17:59:28+08:00" title="2016年3月28日 下午5:59:28">3月28日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶(3)</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6267042261125563137"><div class="ds-post-self" data-post-id="6267042261125563137" data-thread-id="6266972209378493185" data-root-id="0" data-source="duoshuo"><div class="ds-avatar" data-user-id="12976272"><a rel="nofollow author" target="_blank" href="http://t.qq.com/wangyunfeng2663225" onclick="this.href=&#39;http://doyoe.duoshuo.com/user-url/?user_id=12976272&#39;;" title="鋀想-烣涩"><img src="./background系列之你不知道的background-position _ CSS探索之旅_files/100" alt="鋀想-烣涩"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://t.qq.com/wangyunfeng2663225" onclick="this.href=&#39;http://doyoe.duoshuo.com/user-url/?user_id=12976272&#39;;" rel="nofollow" target="_blank" data-user-id="12976272">鋀想-烣涩</a></div><p>膜拜瑶姐。。</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-03-28T18:04:43+08:00" title="2016年3月28日 下午6:04:43">3月28日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6267042322878300929"><div class="ds-post-self" data-post-id="6267042322878300929" data-thread-id="6266972209378493185" data-root-id="0" data-source="duoshuo"><div class="ds-avatar" data-user-id="9821775"><a rel="nofollow author" target="_blank" href="http://weibo.com/edwonlim" onclick="this.href=&#39;http://doyoe.duoshuo.com/user-url/?user_id=9821775&#39;;" title="edwon_lim"><img src="./background系列之你不知道的background-position _ CSS探索之旅_files/1(1)" alt="edwon_lim"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://weibo.com/edwonlim" onclick="this.href=&#39;http://doyoe.duoshuo.com/user-url/?user_id=9821775&#39;;" rel="nofollow" target="_blank" data-user-id="9821775">edwon_lim</a></div><p> <img src="./background系列之你不知道的background-position _ CSS探索之旅_files/lxhzan_org.gif" alt="[赞啊]" title="[赞啊]" class="ds-smiley"> </p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-03-28T18:04:57+08:00" title="2016年3月28日 下午6:04:57">3月28日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6267044863921881858"><div class="ds-post-self" data-post-id="6267044863921881858" data-thread-id="6266972209378493185" data-root-id="0" data-source="duoshuo"><div class="ds-avatar" data-user-id="6267044823451042562"><a rel="nofollow author" target="_blank" href="javascript:void(0)" onclick="this.href=&#39;http://doyoe.duoshuo.com/user-url/?user_id=6267044823451042562&#39;;" title="koko"><img src="./background系列之你不知道的background-position _ CSS探索之旅_files/0" alt="koko"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="javascript:void(0)" onclick="this.href=&#39;http://doyoe.duoshuo.com/user-url/?user_id=6267044823451042562&#39;;" rel="nofollow" target="_blank" data-user-id="6267044823451042562">koko</a></div><p>膜拜 <img src="./background系列之你不知道的background-position _ CSS探索之旅_files/kl_org.gif" alt="[可怜]" title="[可怜]" class="ds-smiley"> </p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-03-28T18:14:49+08:00" title="2016年3月28日 下午6:14:49">3月28日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6267064274951078658"><div class="ds-post-self" data-post-id="6267064274951078658" data-thread-id="6266972209378493185" data-root-id="0" data-source="duoshuo"><div class="ds-avatar"><img src="./background系列之你不知道的background-position _ CSS探索之旅_files/noavatar_default.png" alt="wy-ei"></div><div class="ds-comment-body"><div class="ds-comment-header"><span class="ds-user-name" data-qqt-account="">wy-ei</span></div><p>学习了，多谢瑶姐分享。</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-03-28T19:30:08+08:00" title="2016年3月28日 下午7:30:08">3月28日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6270639594253845250"><div class="ds-post-self" data-post-id="6270639594253845250" data-thread-id="6266972209378493185" data-root-id="0" data-source="duoshuo"><div class="ds-avatar" data-user-id="6243549195173626625"><a rel="nofollow author" target="_blank" href="http://weibo.com/2998370965" onclick="this.href=&#39;http://doyoe.duoshuo.com/user-url/?user_id=6243549195173626625&#39;;" title="小幼稚01"><img src="./background系列之你不知道的background-position _ CSS探索之旅_files/0(1)" alt="小幼稚01"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://weibo.com/2998370965" onclick="this.href=&#39;http://doyoe.duoshuo.com/user-url/?user_id=6243549195173626625&#39;;" rel="nofollow" target="_blank" data-user-id="6243549195173626625">小幼稚01</a></div><p>1</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-04-07T10:44:12+08:00" title="2016年4月7日 上午10:44:12">4月7日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6271062716484420353"><div class="ds-post-self" data-post-id="6271062716484420353" data-thread-id="6266972209378493185" data-root-id="0" data-source="duoshuo"><div class="ds-avatar" data-user-id="13890045"><img src="./background系列之你不知道的background-position _ CSS探索之旅_files/100(1)" alt="M"></div><div class="ds-comment-body"><div class="ds-comment-header"><span class="ds-user-name" data-user-id="13890045" data-qqt-account="">M</span></div><p>学习了，膜拜中，终于有更新了。</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-04-08T14:06:08+08:00" title="2016年4月8日 下午2:06:08">4月8日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6271760111698445057"><div class="ds-post-self" data-post-id="6271760111698445057" data-thread-id="6266972209378493185" data-root-id="0" data-source="duoshuo"><div class="ds-avatar" data-user-id="274816"><a rel="nofollow author" target="_blank" href="http://caibaojian.com/" onclick="this.href=&#39;http://doyoe.duoshuo.com/user-url/?user_id=274816&#39;;" title="前端开发博客"><img src="./background系列之你不知道的background-position _ CSS探索之旅_files/1(2)" alt="前端开发博客"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://caibaojian.com/" onclick="this.href=&#39;http://doyoe.duoshuo.com/user-url/?user_id=274816&#39;;" rel="nofollow" target="_blank" data-user-id="274816">前端开发博客</a></div><p>看到你在yo-scroe里面用到百分比这个例子。初始化设置背景为background-size:0 200%; 有两个小图标合并在一起。第二个背景图片位置则为0 100%。</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-04-10T11:12:23+08:00" title="2016年4月10日 上午11:12:23">4月10日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6271887873947992834"><div class="ds-post-self" data-post-id="6271887873947992834" data-thread-id="6266972209378493185" data-root-id="0" data-source="duoshuo"><div class="ds-avatar"><img src="./background系列之你不知道的background-position _ CSS探索之旅_files/noavatar_default.png" alt="学习了，膜拜中，终于有更新了。"></div><div class="ds-comment-body"><div class="ds-comment-header"><span class="ds-user-name" data-qqt-account="">学习了，膜拜中，终于有更新了。</span></div><p>学习了，膜拜中，终于有更新了。</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-04-10T19:28:10+08:00" title="2016年4月10日 下午7:28:10">4月10日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6272128650900931330"><div class="ds-post-self" data-post-id="6272128650900931330" data-thread-id="6266972209378493185" data-root-id="0" data-source="duoshuo"><div class="ds-avatar" data-user-id="6272128475037958914"><a rel="nofollow author" target="_blank" href="javascript:void(0)" onclick="this.href=&#39;http://doyoe.duoshuo.com/user-url/?user_id=6272128475037958914&#39;;" title="AAA幻白💯®💎"><img src="./background系列之你不知道的background-position _ CSS探索之旅_files/0(2)" alt="AAA幻白💯®💎"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="javascript:void(0)" onclick="this.href=&#39;http://doyoe.duoshuo.com/user-url/?user_id=6272128475037958914&#39;;" rel="nofollow" target="_blank" data-user-id="6272128475037958914">AAA幻白💯®💎</a></div><p>大神，你的CSS博客非常好，算是我觉得最好最全最新的CSS手册了，给你捐赠了点小钱，不要见笑哦！</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-04-11T11:02:30+08:00" title="2016年4月11日 上午11:02:30">4月11日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li></ul><div class="ds-paginator" style="display: none;"><div class="ds-border"></div><a data-page="1" href="javascript:void(0);" class="ds-current">1</a></div><a name="respond"></a><div class="ds-login-buttons"><p>社交帐号登录:</p><div class="ds-social-links"><ul class="ds-service-list"><li><a href="http://doyoe.duoshuo.com/login/weixin/" rel="nofollow" class="ds-service-link ds-weixin">微信</a></li><li><a href="http://doyoe.duoshuo.com/login/weibo/" rel="nofollow" class="ds-service-link ds-weibo">微博</a></li><li><a href="http://doyoe.duoshuo.com/login/qq/" rel="nofollow" class="ds-service-link ds-qq">QQ</a></li><li><a href="http://doyoe.duoshuo.com/login/renren/" rel="nofollow" class="ds-service-link ds-renren">人人</a></li><li><a class="ds-more-services" href="javascript:void(0)">更多»</a></li></ul><ul class="ds-service-list ds-additional-services"><li><a href="http://doyoe.duoshuo.com/login/douban/" rel="nofollow" class="ds-service-link ds-douban">豆瓣</a></li><li><a href="http://doyoe.duoshuo.com/login/kaixin/" rel="nofollow" class="ds-service-link ds-kaixin">开心</a></li><li><a href="http://doyoe.duoshuo.com/login/baidu/" rel="nofollow" class="ds-service-link ds-baidu">百度</a></li><li><a href="http://doyoe.duoshuo.com/login/google/" rel="nofollow" class="ds-service-link ds-google">谷歌</a></li></ul></div></div><div class="ds-replybox"><a class="ds-avatar" href="javascript:void(0);" onclick="return false"><img src="./background系列之你不知道的background-position _ CSS探索之旅_files/noavatar_default.png" alt=""></a><form method="post"><input type="hidden" name="thread_id" value="6266972209378493185">
+<input type="hidden" name="parent_id" value="">
+<input type="hidden" name="nonce" value="574d6a7b42e3a"><div class="ds-textarea-wrapper ds-rounded-top"><textarea name="message" title="Ctrl+Enter快捷提交" placeholder="说点什么吧…"></textarea><pre class="ds-hidden-text"></pre></div><div class="ds-post-toolbar"><div class="ds-post-options ds-gradient-bg"><span class="ds-sync"></span></div><button class="ds-post-button" type="submit">发布</button><div class="ds-toolbar-buttons"><a class="ds-toolbar-button ds-add-emote" title="插入表情"></a></div></div></form></div><p class="ds-powered-by"><a href="http://duoshuo.com/" target="_blank" rel="nofollow">CSS探索之旅正在使用多说</a></p></div></div>
+            
+          </div>
+        
+      </div>
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first" style="top: 5px; transform: rotateZ(-45deg); width: 100%;"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle" style="opacity: 0;"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last" style="top: -5px; transform: rotateZ(45deg); width: 100%;"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar sidebar-active" style="display: block; width: 320px;">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element" style="opacity: 1; display: block; transform: translateX(0px);">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person" style="opacity: 1; display: block; transform: translateX(0px);">
+          <img class="site-author-image" src="./background系列之你不知道的background-position _ CSS探索之旅_files/avatar.jpg" alt="CSS探索之旅" width="200" itemprop="image">
+          <p class="site-author-name" itemprop="name">CSS探索之旅</p>
+        </div>
+        <nav class="site-state motion-element" style="opacity: 1; display: block; transform: translateX(0px);">
+          <div class="site-state-item site-state-posts">
+            <a href="http://blog.doyoe.com/archives">
+              <span class="site-state-item-count">20</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="http://blog.doyoe.com/categories">
+              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="http://blog.doyoe.com/tags">
+              <span class="site-state-item-count">37</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        <div class="links-of-social motion-element" style="opacity: 1; display: block; transform: translateX(0px);">
+          
+            
+            <a href="https://github.com/doyoe/doyoe.github.io" class="links-of-social-item github" target="_blank">github</a>
+            
+            <a href="http://weibo.com/doyoe" class="links-of-social-item weibo" target="_blank">weibo</a>
+            
+            <a href="http://blog.doyoe.com/atom.xml" class="links-of-social-item rss" target="_blank">rss</a>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element" style="opacity: 1; display: block; transform: translateX(0px);">
+          
+        </div>
+
+        <div class="links-of-author motion-element" style="opacity: 1; display: block; transform: translateX(0px);">
+            <p class="site-author-name">订阅号</p>
+            <p style="padding:20px 75px">
+                <img src="./background系列之你不知道的background-position _ CSS探索之旅_files/wechat.jpg" width="150px" style="border-radius:10px">
+            </p>
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active motion-element" style="opacity: 1; display: block; transform: translateX(0px);">
+          <div class="post-toc-indicator-top post-toc-indicator" style="opacity: 0;"></div>
+          <div class="post-toc" style="height: 551px;">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="http://blog.doyoe.com/2016/03/28/css/background%E7%B3%BB%E5%88%97%E4%B9%8B%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84background-position/#这是一个有趣的话题"><span class="nav-number">1.</span> <span class="nav-text">这是一个有趣的话题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="http://blog.doyoe.com/2016/03/28/css/background%E7%B3%BB%E5%88%97%E4%B9%8B%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84background-position/#重拾旧趣"><span class="nav-number">2.</span> <span class="nav-text">重拾旧趣</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="http://blog.doyoe.com/2016/03/28/css/background%E7%B3%BB%E5%88%97%E4%B9%8B%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84background-position/#一个足够简单的应用"><span class="nav-number">3.</span> <span class="nav-text">一个足够简单的应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="http://blog.doyoe.com/2016/03/28/css/background%E7%B3%BB%E5%88%97%E4%B9%8B%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84background-position/#HTML:"><span class="nav-number">3.1.</span> <span class="nav-text">HTML:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="http://blog.doyoe.com/2016/03/28/css/background%E7%B3%BB%E5%88%97%E4%B9%8B%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84background-position/#CSS:"><span class="nav-number">3.2.</span> <span class="nav-text">CSS:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="http://blog.doyoe.com/2016/03/28/css/background%E7%B3%BB%E5%88%97%E4%B9%8B%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84background-position/#默认值"><span class="nav-number">4.</span> <span class="nav-text">默认值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="http://blog.doyoe.com/2016/03/28/css/background%E7%B3%BB%E5%88%97%E4%B9%8B%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84background-position/#百分比"><span class="nav-number">5.</span> <span class="nav-text">百分比</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="http://blog.doyoe.com/2016/03/28/css/background%E7%B3%BB%E5%88%97%E4%B9%8B%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84background-position/#试着使用百分比去实现上个例子"><span class="nav-number">5.1.</span> <span class="nav-text">试着使用百分比去实现上个例子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="http://blog.doyoe.com/2016/03/28/css/background%E7%B3%BB%E5%88%97%E4%B9%8B%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84background-position/#追本溯源"><span class="nav-number">5.2.</span> <span class="nav-text">追本溯源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="http://blog.doyoe.com/2016/03/28/css/background%E7%B3%BB%E5%88%97%E4%B9%8B%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84background-position/#再出发"><span class="nav-number">5.3.</span> <span class="nav-text">再出发</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="http://blog.doyoe.com/2016/03/28/css/background%E7%B3%BB%E5%88%97%E4%B9%8B%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84background-position/#多值"><span class="nav-number">6.</span> <span class="nav-text">多值</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="http://blog.doyoe.com/2016/03/28/css/background%E7%B3%BB%E5%88%97%E4%B9%8B%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84background-position/#多值的意义"><span class="nav-number">6.1.</span> <span class="nav-text">多值的意义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="http://blog.doyoe.com/2016/03/28/css/background%E7%B3%BB%E5%88%97%E4%B9%8B%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84background-position/#多值的应用"><span class="nav-number">6.2.</span> <span class="nav-text">多值的应用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="http://blog.doyoe.com/2016/03/28/css/background%E7%B3%BB%E5%88%97%E4%B9%8B%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84background-position/#写在最后"><span class="nav-number">7.</span> <span class="nav-text">写在最后</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="http://blog.doyoe.com/2016/03/28/css/background%E7%B3%BB%E5%88%97%E4%B9%8B%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84background-position/#background系列文章："><span class="nav-number">8.</span> <span class="nav-text">background系列文章：</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator" style="opacity: 0;"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright">
+  
+  © &nbsp; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CSS探索之旅</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io/">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="./background系列之你不知道的background-position _ CSS探索之旅_files/index.js"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"doyoe"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+    
+  
+  
+  <script type="text/javascript" src="./background系列之你不知道的background-position _ CSS探索之旅_files/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="./background系列之你不知道的background-position _ CSS探索之旅_files/fancy-box.js"></script>
+
+
+  <script type="text/javascript" src="./background系列之你不知道的background-position _ CSS探索之旅_files/helpers.js"></script>
+  
+
+  <script type="text/javascript" src="./background系列之你不知道的background-position _ CSS探索之旅_files/velocity.min.js"></script>
+  <script type="text/javascript" src="./background系列之你不知道的background-position _ CSS探索之旅_files/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="./background系列之你不知道的background-position _ CSS探索之旅_files/motion_global.js" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="./background系列之你不知道的background-position _ CSS探索之旅_files/nav-toggle.js"></script>
+  <script type="text/javascript" src="./background系列之你不知道的background-position _ CSS探索之旅_files/fastclick.min.js"></script>
+
+  
+  
+<script type="text/javascript" src="./background系列之你不知道的background-position _ CSS探索之旅_files/bootstrap.scrollspy.js" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="./background系列之你不知道的background-position _ CSS探索之旅_files/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+
+
+</body></html>

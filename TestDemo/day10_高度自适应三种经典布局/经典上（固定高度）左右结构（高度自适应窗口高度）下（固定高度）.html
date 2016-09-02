@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>经典左右结构--高度自适应窗口高度</title>
+<style>
+body,html{height:100%;}
+*{margin:0; padding:0;}
+.top{width:100%; height:100px; background:#096; position:absolute; top:0; left:0;}
+.center{width:100%; background:#30C; position:absolute; top:100px; bottom:100px; bottom:0;}
+.left{width:200px; height:100%; background:#FF0; float:left; }
+.right{background:#CF3; overflow:hidden; height:100%;}
+.bottom{width:100%; height:100px; background:#096; position:absolute; bottom:0;}
+
+</style>
+</head>
+
+<body>
+<div class="top"></div>
+<div class="center">
+    <div class="left"></div>
+    <div class="right"></div>
+</div>
+<div class="bottom"></div>
+
+</body>
+</html>

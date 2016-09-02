@@ -1,0 +1,39 @@
+<!doctype>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>test</title>
+	</head>
+	<body >
+		<script>
+			var a = 123;
+			console.log(typeof a);//number
+
+			var b = String(a);
+			console.log(b);
+			console.log(typeof b);//string
+
+			var c = Boolean(a);
+			console.log(c);
+			console.log(typeof c);//boolean
+
+			var d = Array(a);
+			console.log(d)//d{},但是Array(a)等价于给数组长度赋值为a
+			console.log(d instanceof Array);//true
+
+			var e = Function(a);
+			console.log(e);//function anonymous() {123}
+			console.log(e instanceof Function);//true
+
+			var f = RegExp(a);
+			console.log(f);/123/
+			console.log(f instanceof RegExp);//true
+
+			var g = Object(g);
+			console.log(g);//Object{}
+			console.log(Object.prototype.toString.call(g));//[object Object]
+
+			/*通过JS定义的基本数据类型和复杂类型都可以将任一类型强转为规定类型，只不过要注意数组和函数的强转。*/
+		</script>
+	</body>
+</html>

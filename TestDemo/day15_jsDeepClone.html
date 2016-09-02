@@ -1,0 +1,57 @@
+<!doctype>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title></title>
+		<style>
+			#box1{height: 200px;background: red;margin: 50px 0;}
+			#box2{height: 200px;background: blue;}
+		</style>
+	</head>
+	<body>
+
+		<script>
+			/*深度克隆*/
+			function deepClone(obj){
+			    var result={},oClass=isClass(obj);
+			    if(oClass==="Object"){
+			        result={};
+			    }else if(oClass==="Array"){
+			        result=[];
+			    }else{
+			        return obj;
+			    }
+			    for(key in obj){
+			        var copy=obj[key];
+			        if(isClass(copy)=="Object"){
+			            result[key]= deepClone(copy);
+			        }else if(isClass(copy)=="Array"){
+			            result[key]= deepClone(copy);
+			        }else{
+			            result[key]=obj[key];
+			        }
+			    }
+			    return result;
+			}
+			function isClass(o){
+			    if(o===null) return "Null";
+			    if(o===undefined) return "Undefined";
+			    return Object.prototype.toString.call(o).slice(8,-1);
+			}
+
+			/*深度克隆进阶*/
+			function deepClone2(obj) {
+				var o = obj instanceof Array ? [] : {};
+			  	for(var k in obj){
+			    	o[k] = typeof obj[k] === 'object' ? deepClone(obj[k]) : obj[k];
+			  	}
+			  	return o;
+			}
+			
+
+			console.log(deepClone2([1,2,[1,2,null]]));
+			console.log(deepClone([1,2,[1,2,null]]));
+
+		</script>
+	</body>
+</html>

@@ -1,0 +1,35 @@
+<!doctype>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>prototype对象</title>
+	</head>
+	<body>
+		<script>
+			/*重写prototype对象带来的影响*/
+			function Person(){
+				this.name = 1;
+			}
+			var person1 = new Person();
+			Person.prototype.name =2;
+			console.log(person1.name); //1
+			console.log(person1.__proto__.name); //2
+
+			/*开始重写prototype对象*/
+			Person.prototype = {
+				name:3
+			}
+			console.log(person1.name); //1 -->实例化person1时已经在执行Person函数语句时给person1添加该属性。
+			console.log(person1.__proto__.constructor)//Person对象
+			console.log(person1.__proto__.name); //2 -->说明person1还是指向Person对象的原prototype对象。
+
+
+			var person2 = new Person();
+			console.log(person2.__proto__.name); //3 -->说明Person的prototype属性指向已经发生了变化，指向新prototype对象。
+			console.log(person2.__proto__.constructor == Object);//true -->说明Person的prototype对象的constructor属性在不赋值的情况下是通过原型链向上找到Objectd的prototype的constructor属性。
+			console.log(person2.name); //1 -->实例化person2时已经在执行Person函数语句时给person2添加该属性。
+
+
+		</script>
+	</body>
+</html>

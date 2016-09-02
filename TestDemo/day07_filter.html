@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title></title>
+		<style type="text/css">
+			h2{
+				text-align: center;
+			}
+			.alpha{
+				-webkit-filter: alpha(0.5);
+				filter: alpha(opacity=50);
+			}
+			.dropshadow{
+				-webkit-filter: drop-shadow(5px 5px 5px red);
+				filter:  DropShadow(Color="#ff0000",OffX="5",OffY="5",Positive="1");
+			}
+			.grayscale{
+				-webkit-filter: grayscale(80%);
+				filter: grayscale(80%);
+			}
+		</style>
+	</head>
+	<body>
+		<h2>CSS过滤器最初是为了向SVG矢量图提供不同的图片效果。现在，CSS filter  不在局限于在SVG中使用，也可以在图片、文字和其他元素上使用。它实现的功能与PS的正片叠加、滤镜、叠加等类似，能将图片渲染为一种特殊的效果。但是CSS过滤器对页面性能是有影响的，不可以滥用。如果你整个页面很多地方都使用了CSS过滤器来渲染，那么你的页面将会加在得十分慢。</h2>
+		<h3>透明度：filter:alpha(opacity=?,finishOpacity=?,style=?,startX=?,startY=?,finishX=?,finfishY=?)</h3>
+		<img class="alpha" src="sourse/day06_img1.jpg"/>
+		<h3>阴影：filter:(color=?,offX=?,offY=?,positive=?)</h3>
+		<img class="dropshadow" src="sourse/day06_img1.jpg"/>
+		<h3>grayscale：filter:grayscale(0%-100%)</h3>
+		<img class="grayscale" src="sourse/day06_img1.jpg"/>
+		
+	</body>
+</html>

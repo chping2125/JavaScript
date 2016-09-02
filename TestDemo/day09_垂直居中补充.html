@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>line-height</title>
+		<style>
+			body{margin:0;padding:0;}
+			p{padding-left: 50px;}
+			div{width: 500px;height: 500px;background: #ccc;}
+			a{display: inline-block;width: 500px;height: 500px;background: #666;} 
+			/* 图片垂直居中方法1： */
+			.box1{display: table-cell;vertical-align: middle;/* font-size: 118px; */}
+			img{vertical-align: middle;}
+			/* 图片垂直居中方法2： */
+			i{display: inline-block;height: 100%;width: 0;vertical-align: middle;}
+			/* 多行文本垂直居中方法： */
+			.box3{display: table-cell;vertical-align: middle;}
+			span{display: inline-block;vertical-align: middle;}
+			
+			
+		</style>
+	</head>
+	<body>
+		<h1>大小不固定的图片垂直居中方法1：</h1>
+		<div class="box1">
+			<img src="sourse/day06_img1.jpg" />
+		</div>
+		<p>
+			<code>
+				.box1{display: table-cell;vertical-align: middle;/* font-size: 118px; */}<br>
+				img{vertical-align: middle;}
+			</code>
+			<br>
+			原理就是父元素为table-cell类型，利用table自带的垂直居中的属性(ie8+).
+		</p>
+
+
+		<h1>大小不固定的图片垂直居中方法2：</h1>
+		<div class="box2">
+			<i></i>
+			<img src="sourse/day06_img1.jpg" />
+		</div>
+		<p>
+			<code>
+				i{display: inline-block;height: 100%;width: 0;vertical-align: middle;}
+			</code>
+			<br>
+			原理就是利用给img添加兄弟元素，重新设置基线的位置。(ie8+)<br>
+			父元素是内联元素的时候，理论上两种方法都行。我验证成功了该方法，第一种方法是通过修改font-size的值来修改基线的设置，但是我没把握好font-size设置的大小（鑫爷说有个和父元素高度的比例1.5，1.14什么的，但是还是没验证成功）。
+		</p>
+
+
+		<h1>多行文本的垂直居中方法：</h1>
+		<div class="box3">
+			<span>你好，我是测试数据你好，我是测试数据你好，我是测试数据你好，我是测试数据你好，我是测试数据你好，我是测试数据你好，我是测试数据你好，我是测试数据你好，我是测试数据你好，我是测试数据你好，我是测试数据你好，我是测试数据你好，我是测试数据你好，我是测试数据你好，我是测试数据你好，我是测试数据你好，我是测试数据你好，我是测试数据</span>
+		</div>
+		<p>
+			<code>
+				.box1{display: table-cell;vertical-align: middle;}<br>
+				span{display: inline-block;vertical-align: middle;}
+			</code>
+			<br>
+			原理就是将内部的文本用span标签（其他标签也可以）包裹起来，把span标签设为inline-block,然后当图片的垂直居中处理。(ie8+)
+		</p>
+		
+	</body>
+</html>

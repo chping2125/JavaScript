@@ -1,0 +1,22 @@
+<!doctype>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>test</title>
+		<script src="sourse/jquery-2.1.4.min.js"></script>
+		
+	</head>
+	<body >
+	
+		<script>
+			//1.验证$()传参为function时的执行顺序
+			console.log(1)
+			$(function(){
+				console.log(2)
+			});
+			console.log(3);
+			/*打印 1 3 2 -->说明$()传参为function时等价于$().ready =function(){}
+			* 即window.onload = function(){}。也就是说是文档加载完毕时，传入的函数实参被调用*/
+		</script>
+	</body>
+</html>

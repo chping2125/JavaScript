@@ -1,0 +1,58 @@
+<!doctype>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title></title>
+		<style>
+			#box1{height: 200px;background: red;margin: 50px 0;}
+			#box2{height: 200px;background: blue;}
+		</style>
+	</head>
+	<body>
+		<a id = "a"href="">拖动源</a>
+		<div id="box1">无效放置目标</div>
+		<div id="box2">
+			有效放置目标:关于dragstart、drag、dragenter、dragover、dragleave、drop、drapend事件的监听，还有dataTransfer对象的问题请看调试控制台
+		</div>
+
+		<script>
+		
+		var a = document.getElementById('a');
+		a.ondragstart=function(e){
+			e.dataTransfer.setData('text','我是从dragstart传过来的text数据');
+			console.log('dragstart')
+		}
+		a.ondrag=function(e){
+			e.dataTransfer.setData('text','我是从drag传过来的text数据');
+			console.log('drag.....')
+		}
+		a.ondragend=function(e){
+			e.dataTransfer.setData('text','我是从dragend传过来的text数据');
+			console.log('dragend')
+		}
+
+		var box =document.getElementById("box2");
+		box.ondragenter = function(e){
+			/*阻止目标的dragenter和dragover默认关闭事件*/
+			e.preventDefault();
+			console.log('drapenter'+e.dataTransfer.getData('text'));
+			console.log('drapenter');
+		}
+		box.ondragover = function(e){
+			e.preventDefault();
+			console.log('drapover'+e.dataTransfer.getData('text'));
+			console.log('drapover......');
+		}
+		box.ondragleave = function(){
+			console.log('dragleave'+e.dataTransfer.getData('text'));
+			console.log('dragleave')
+		}
+		box.ondrop = function(e){
+			/*firefox需要阻止该事件的默认行为*/
+			e.preventDefault();
+			console.log('drop'+e.dataTransfer.getData('text'));
+			console.log('drop')
+		}
+		</script>
+	</body>
+</html>

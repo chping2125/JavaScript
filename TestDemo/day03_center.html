@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		text-align水平居中：
+		<div style="width:200px;height:100px;background:#555;text-align:center">
+			利用text-align对本元素文字水平对齐
+		</div>
+		<br>
+		<div style="width:300px;height:300px;background:#555;text-align:center">
+			<div style="width:200px;height:100px;border:1px dotted blue;background:#f00;">
+				利用text-align对子div元素水平对齐
+			</div>
+		</div>
+		<br>
+		<div style="width:300px;height:300px;background:#555;text-align:center">
+			<span style="background:#f00;">
+				利用text-align对子span元素水平对齐
+			</span>
+		</div>
+		<br>
+		<div style="width:300px;height:300px;background:#555;text-align:center">
+			<div style="display:inline;width:200px;height:100px;border:1px dotted blue;background:#f00;">
+				设置了inline的div元素水平对齐
+			</div>
+		</div>
+		<br>
+		<div style="width:300px;height:300px;background:#555;text-align:center">
+			<div style="display:inline;width:200px;height:100px;border:1px dotted blue;background:#f00;">
+				设置了inline-block的div元素水平对齐
+			</div>
+		</div>
+		<br>
+
+		margin: 0 auto水平居中：
+		<div style="width:200px;height:100px;background:#555;margin: 0 auto;">
+			利用margin:0 auto对文字水平对齐
+		</div>
+		<br>
+		<div style="width:300px;height:300px;background:#555;">
+			<div style="width:200px;height:100px;border:1px dotted blue;background:#f00;margin: 0 auto;">
+				利用margin:0 auto对子div元素水平对齐
+			</div>
+		</div>
+		<br>
+		<div style="width:300px;height:300px;background:#555;">
+			<div style="height:100px;border:1px dotted blue;background:#f00;margin: 0 auto;">
+				利用margin:0 auto对子div元素水平对齐,子元素文本宽度未知
+			</div>
+		</div>
+		<br>
+		<div style="width:300px;height:300px;background:#555;">
+			<span style="background:#f00;margin: 0 auto;">
+				对子span元素水平对齐
+			</span>
+		</div>
+		<br>
+		<div style="width:300px;height:300px;background:#555;">
+			<span style="width:200px;height:100px;display:block;background:#f00;margin: 0 auto;">
+				设置了block的span元素水平对齐
+			</span>
+		</div>
+		<br>
+		<div style="width:300px;height:300px;background:#555;">
+			<div style="display:inline;height:100px;border:1px dotted blue;background:#f00;margin: 0 auto;">
+				设置inline的子div元素水平对齐
+			</div>
+		</div>
+		<br>
+		<div style="width:500px;height:300px;background:#555;">
+			<div style="display:inline;height:100px;border:1px dotted blue;background:#f00;margin: 0 auto;">
+				设置inline-block的子div元素水平对齐
+			</div>
+		</div>
+		<br>
+
+		position和margin水平居中：
+		<div style="width:600px;height:300px;background:#555;position:relative">
+			<div style="width:100px;height:100px;background:#f00;position:absolute;left:300px;margin-left:-50px">
+				对div元素盒子水平对齐
+			</div>
+		</div>
+		<br>
+		<div style="width:600px;height:300px;background:#555;position:relative">
+			<span style="background:#f00;position:absolute;left:300px;transform: translate(-50%,0);">
+				对div元素盒子水平对齐
+			</span>
+		</div>
+		<br>
+
+		结论：text-align具有继承性，可以使文本元素以及子元素的文本水平居中，也可以使行内元素（或者设置了display:inline/inline-block属性的块状元素）水平居中，但不能使块状元素居中.<br><br>
+			margin没有继承性，只能使已知宽度的块状元素水平居中。<br><br>
+			position水平居中很好用(兼容性)。
+			<br><br><br><br><br><br>
+
+
+
+
+		line-height=height垂直居中：
+		<div style="width:500px;height:100px;background:#555;line-height:100px">
+			利用line-height=height对本元素文本垂直对齐
+		</div>
+		<br>
+		<div style="width:600px;height:300px;background:#555;line-height:300px">
+			<div style="width:500px;height:100px;background:#f00;">
+				利用line-height=width对div元素盒子垂直对齐
+			</div>
+		</div>
+		<br>
+		<div style="width:600px;height:300px;background:#555;line-height:300px">
+			<span style="background:#f00;">
+				利用line-height=width对span元素盒子垂直对齐
+			</span>
+		</div>
+		<br>
+		<div style="width:600px;height:300px;background:#555;line-height:300px">
+			<div style="background:#f00;display:inline">
+				设置了inline的div元素盒子垂直对齐
+			</div>
+		</div>
+		<br>
+		<div style="width:600px;height:300px;background:#555;line-height:300px">
+			<div style="background:#f00;display:inline-block">
+				设置了inline-block的div元素盒子垂直对齐
+			</div>
+		</div>
+		<br>
+
+		position和margin垂直居中：
+		<div style="width:600px;height:300px;background:#555;position:relative">
+			<div style="width:100px;height:100px;background:#f00;position:absolute;top:50%;margin-top:-50px">
+				利用position对div元素盒子垂直对齐
+			</div>
+		</div>
+		<br>
+		<div style="width:600px;height:300px;background:#555;position:relative">
+			<span style="background:#f00;position:absolute;top:50%;transform: translate(0,-50%);">
+				利用position对span元素盒子垂直对齐
+			</span>
+		</div>
+		<br>
+
+		结论：line-weight:height具有继承性，可以使文本元素以及子元素的文本垂直居中，也可以使行内元素（或者设置了display:inline属性的块状元素）垂直居中，但不能使块状元素（或设置了display：inline-block属性的块状元素）居中.<br><br>
+			position垂直居中很好用。
+		<br><br><br><br><br><br><br><br>
+
+
+
+
+		垂直水平居中：
+		<div style="width:600px;height:300px;background:#555;position:relative">
+			<div style="width:100px;height:100px;background:#f00;position:absolute;left:50%;top:50%;margin-left:-50px;margin-top:-50px">
+				利用position和margin对div元素盒子垂直水平对齐
+			</div>
+		</div>
+		<br>
+		<div style="width:600px;height:300px;background:#555;position:relative">
+			<div style="background:#f00;position:absolute;left:50%;top:50%;transform: translate(-50%,-50%);">
+				利用position和margin对span元素盒子垂直水平对齐
+			</div>
+		</div>
+		<br>
+		<div style="width:600px;height:300px;background:#555;position:relative">
+			<div style="width: 200px;height:100px;background:#f00;position:absolute;left:0;top:0;bottom:0;right:0;margin:auto">
+				利用left:0;top:0;bottom:0;right:0;margin:auto对盒子垂直水平对齐
+			</div>
+		</div>
+		<br>
+		<div style="width:600px;height:300px;background:#555;display:table-cell;vertical-align:middle;text-align:center">
+			<div style="width: 200px;height:100px;background:#f00;vertical-align:middle;display:inline-block">
+				利用display:table-cell;vertical-align:middle;text-align:center;对inline-block盒子垂直水平对齐
+			</div>
+		</div>
+		<br>
+		<br><br><br><br><br><br>
+
+
+
+
+		
+	</body>
+</html>

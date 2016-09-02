@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title></title>
+		<style>
+			body,p{margin:0; padding:0;}
+			img{display:block;}
+			.btnbox{text-align: center;}
+			.st{margin: 20px auto; width: 1000px;text-indent: 2em;background: #ccc;padding:10px;}
+			h1{text-align: center;}
+			.box1{width: 800px; height: 380px;margin: 50px auto;border: 1px solid #ddd;}
+			.box1 p{background: red;}
+		</style>
+	</head>
+	<body>
+		<h1>flaot的最初想法</h1>
+		<div class="box1">
+			<img src="sourse/day06_img1.jpg" />
+			<p>我是左边图片的介绍性文字我是左边图片的介绍性文字我是左边图片的介绍性文字我是左边图片的介绍性文字我是左边图片的介绍性文字我是左边图片的介绍性文字我是左边图片的介绍性文字我是左边图片的介绍性文字我是左边图片的介绍性文字我是左边图片的介绍性文字我是左边图片的介绍性文字我是左边图片的介绍性文字我是左边图片的介绍性文字我是左边图片的介绍性文字我是左边图片的介绍性文字我是左边图片的介绍性文字我是左边图片的介绍性文字我是左边图片的介绍性文字我是左边图片的介绍性文字我是左边图片的介绍性文字我是左边图片的介绍性文字我是左边图片的介绍性文字我是左边图片的介绍性文字我是左边图片的介绍性文字我是左边图片的介绍性文字我是左边图片的介绍性文字我是左边图片的介绍性文字我是左边图片的介绍性文字我是左边图片的介绍性文字我是左边图片的介绍性文字我是左边图片的介绍性文字我是左边图片的介绍性文字我是左边图片的介绍性文字我是左边图片的介绍性文字我是左边图片的介绍性文字我是左边图片的介绍性文字我是左边图片的介绍性文字我是左边图片的介绍性文字我是左边图片的介绍性文字我是左边图片的介绍性文字我是左边图片的介绍性文字我是左边图片的介绍性文字我是左边图片的介绍性文字我是左边图片的介绍性文字</p>
+		</div>
+		<div class="btnbox">
+			<button class="btn1" onclick="addFloat();">img加浮动</button>
+			<button class="btn1" onclick="removeFloat();">去除img的浮动</button>
+			<button class="btn1" onclick="addClear();">给文本加个clear:left</button>
+		</div>
+		<p class="st">
+			上面是正常文档流的展现，外层一个div(灰色框的)，里面有两个兄弟元素，一个img，一个p。早期由于受报纸上的图片是被文字包围的影响，工程师们就想：那我们在网页中是不是也能那样呈现的，于是float属性就应运而生了。<br>
+			当给img加上一个"float:left"以后，就达到了想要的效果，文字包裹了图片，这正是float被发明的原因。而现在float的最常用的确实布局的使用。先说说float的浮动能力。<br>
+			1.包裹性，被应用了float属性的元素，会被隐形的设置display：inline-block。也就是该元素把其内部的元素包裹起来了，宽度和高度全都随着内容而变化。<br>
+			2.破坏性，被应用了float属性的元素，会使其父元素的高度塌陷。而应运而生的清除浮动带来的影响的方法常用：overflow：hidden + zoom:1或者overflow：scroll + zoom:1.overflow的作用是触发除了ie6之外的浏览器的重绘子元素的高度，而zoom是触发ie6的haslayout。还有就是after伪类的使用，大部分浏览器也都支持该伪类。再有就是最简单但不推荐的方法，加一个空div，设置clear：both。
+		</p>
+		<h1>flaot的布局</h1>
+		<style>
+			.box2{height: 500px;border:2px solid #ccc;margin: 20px auto;}
+			.left{height: 300px;float:left;background: blue;width:200px;}
+			.main{height: 400px;background: red;margin-left: 210px;}
+		</style>
+		<div class="box2">
+			<div class="left"></div>
+			<div class="main"></div>
+		</div>
+		<p class="st">
+			很简单的两列布局，左边float定宽，右边margin-left自适应。这本不是float的用法。
+		</p>
+		<h1>flaot的包裹性做水平列表</h1>
+		<style>
+			.ul{width: 350px; margin: 0 auto;border:2px solid #000;}
+			.ul li{float: left;list-style:none;}
+			.ul li a{display:block;padding:0 10px;line-height: 36px;background:#f00;text-decoration:none;color:#000;}
+			.ul li a:hover{background:#ff0;}
+
+			.st2{margin-top: 50px;}
+			.ulbtn{margin-top: 80px;}
+		</style>
+		<ul class="ul">
+			<li><a href="">首页</a></li>
+			<li><a href="">关于我们</a></li>
+			<li><a href="">联系我们</a></li>
+			<li><a href="">成功案例</a></li>
+		</ul>
+		<div class="btnbox ulbtn">
+			<button class="btn1" onclick="removerFloatRes();">清除ul的高度塌陷</button>
+			<button class="btn1" onclick="resetFloat();">恢复高度塌陷</button>
+		</div>
+		<p class="st st2">
+			一个很简单很丑的导航做法，ul,li,a的常规做法，但是一般来说都是给li加了一个float:left,使得原本block的li变成了inline-block后水平方向。这样的做法就是使得li的父元素高度塌陷了(顶端的黑边框原本是整个ul的边框)，还得通过给ul清除浮动带来的影响来解决塌陷的问题(此处我用的是overflow的方法)。这本不是float的用法。
+		</p>
+
+		<script>
+			function addFloat(){
+				var imgNode = document.querySelector('.box1 img');
+				imgNode.style.cssFloat = "left";
+			}
+			function removeFloat(){
+				var imgNode = document.querySelector('.box1 img');
+				imgNode.style.cssFloat = null;
+			}
+			function addClear(){
+				var pNode = document.querySelector('.box1 p');
+				pNode.style.clear = "left";
+			}
+			function removerFloatRes(){
+				var ulNode = document.querySelector('.ul');
+				ulNode.style.overflow =  'hidden';
+				ulNode.style.zoom =  '1';
+			}
+			function resetFloat(){
+				var ulNode = document.querySelector('.ul');
+				ulNode.style.overflow = '';
+				ulNode.style.zoom = '';
+			}
+		</script>
+	</body>
+</html>

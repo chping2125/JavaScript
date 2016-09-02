@@ -1,0 +1,58 @@
+<!doctype>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title></title>
+		<script src="sourse/jquery-2.1.4.min.js"></script>
+		
+	</head>
+	<body>
+		<script>
+		var a = new Object();
+		a.param = 123;
+
+		function foo(){
+		    get = function(){
+		        console.log(1);
+		    };
+		    return this;
+		}
+		foo.get = function(){
+		    console.log(2);
+		};
+		foo.prototype.get = function(){
+		    console.log(3);
+		};
+		var get = function(){
+		    console.log(4);
+		};
+		function get(){
+		    console.log(5);
+		}
+		foo.get();//
+		get();//
+		foo().get();//
+		get();//
+		new foo.get();//
+		new foo().get();//
+		new new foo().get();//
+
+
+
+
+		/**
+		 * new foo().get()执行顺序参考 new Date().getTime();
+		 *
+		 * function fn(){
+		 * 		this.get = 1;
+		 * }	
+		 * fn.get = 2;
+		 * 函数对象的属性和构造函数体内的语句是两部分，要分清。
+		 * 
+		 * 正确答案 2411233
+		 */
+		
+
+		</script>
+	</body>
+</html>

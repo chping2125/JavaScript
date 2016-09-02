@@ -1,0 +1,23 @@
+<!doctype>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>test</title>
+	</head>
+	<body >
+		<script>
+			try{
+		        if(window.console&&window.console.log){
+		            console.log("随机点名的规则\n" +
+		                "1.单击开始，每隔100毫秒随机产生一位同学，再次单击则停止！\n"+
+		                "2.可以输入小概率数组，最终结果将在小概率数组中产生！具体操作请看clickName.js!\n" +
+		                "3.默认开启键盘输入学生座次表顺序的小概率结果事件。只要根据学生位置（如32号为程平）在键盘输入32，则" +
+		                "最终结果及程平\n");
+		            //利用%c占位符可以传递第二个参数，即文字的样式表
+		            console.log("%c可以开始尝试了！！！","color:red;background: #222;");
+		            console.log("没明白？：http://weibo.com/chengping2125");
+		        }
+		    }catch(e){};
+		</script>
+	</body>
+</html>

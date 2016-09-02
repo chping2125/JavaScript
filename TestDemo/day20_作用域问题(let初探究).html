@@ -1,0 +1,74 @@
+<!doctype>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>作用域问题(let初探究)</title>
+		<script src="sourse/jquery-2.1.4.min.js"></script>
+		
+	</head>
+	<body>
+		<script>
+			var a = [];
+			for (var  i = 0; i < 10; i++) {
+				//只有一个i，每次循环都会重新复制i
+			  	a[i] = function () {
+			  		//严格意义上，有些人也不称这个为闭包，因为i为全局变量
+			    	console.log(i);
+			  	};
+			}
+
+			a[6]();//10
+
+
+			var b = [];
+			for (let  j = 0; j < 10; j++) {
+				//每次循环在内存中都会常见一个j，
+				b[j] = function () {
+					//闭包，let产生了块级作用域，j是for循环的块级作用域内的变量
+					console.log(j);
+				};
+			}
+			b[6]();//6
+
+
+			
+			function bar2(x = 2, y = x) {
+				//x=2,发现没声明过x，则声明后赋值；y=x，发现x已经声明，并且有值，所以可以执行赋值操作，于是去声明一个y.
+			  	return [x, y];
+			}
+			console.log(bar2()); //[2,2]
+
+			function bar(a = b, b =2) {
+				//a=b,发现b并没有声明，所以报ReferenceError.(未声明的变量只有typeof操作不会报错，其他运算符都会报错)
+			  	return [a, b];
+			}
+			console.log(bar()); // 报错
+
+			
+
+			{
+				var a = 111;//没有块级作用域，所以声明提前为全局变量
+			}
+			alert(a);//111
+
+			var b = {
+				c:222//b对象的属性c
+			}
+			alert(c);//ReferenceError 此时b是一个对象
+			alert(b.c);//222-->说明
+
+			
+			{
+				d:333
+			}
+			alert(d);//ReferenceError  此时为一个代码块，执行的时候，d:333没有任何意义
+
+			var d = {
+				var e=333;
+			}
+			alert(e);//SyntaxError 此时d是一个对象，var a = 333;是一条执行语句，并不是对象里面的属性。
+
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>Banner图片自适应解决</title>
+		<style>
+			body,h1,div{margin:0;padding:0;}
+			h1{text-align:center;background:#ccc;}
+			img{border:0;}
+			/* banner图片全屏显示并自适应 */
+			.test1 .banner{
+				/* width:100%; *//* 充满父元素或者整个屏幕 */
+			}
+			.test1 img{
+				width: 100%;/* 充满父元素 */
+				/* height: auto; *//* 高度自适应 */
+				vertical-align: bottom;/* 去除img的间隙BUG，不在本实验范畴 */
+			}
+
+			
+			/* banner图片始终自适应显示图片中间部分 */
+			.test2 .bannerbox{
+				width:100%;/* 充满父元素或者整个屏幕 */
+				height: 400px;/* 设置高度，使banner图高度不变 */
+				overflow: hidden;
+				position: relative;
+			}
+			.test2 .banner{
+				width: 1920px;/* 引入图片的大小 */
+				/* 水平居中 该居中的方式不在本次试验范畴*/
+				position: absolute;
+				left: 50%;
+				margin-left: -960px;/* 引入图片的一半 */
+			}
+			.test2 img{
+				vertical-align: bottom;/* 去除img的间隙BUG，不在本实验范畴 */
+			}
+		</style>
+	</head>
+	<body>
+		<div class="test1">
+			<h1>banner图片全屏显示并自适应</h1>
+			<div class="banner">
+				<img src="sourse/day05_banner.jpg"/>
+			</div>
+		</div>
+		<br><br>
+		<div class="test2">
+			<h1>banner图片始终自适应显示图片中间部分</h1>
+			<div class="bannerbox">
+				<div class="banner">
+					<img src="sourse/day05_banner.jpg"/>
+				</div>
+			</div>
+		</div>
+		
+	</body>
+</html>

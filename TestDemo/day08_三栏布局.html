@@ -1,0 +1,119 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>三栏布局</title>
+		<style>
+			html,body{height:100%; margin:0;padding:0;}
+			h1{margin-top: 0;}
+			/* position方法 */
+			.box1{width: 100%;height:500px;}
+			.main1{margin: 0 210px;background:#ccc;height:500px;min-width:300px;}
+			.left1{position: absolute; top:0; left:0;background: #999;width:200px;height:500px;}
+			.right1{position: absolute; top:0; right:0;background: #999;width:200px;height:500px;} 
+			
+			/* margin负值法  */
+			.box2{width: 100%;height:500px;}
+			.main2{float:left; width:100%;height:500px;background:#ccc;}
+			.main2 div{height:100%;margin: 0 210px;background:#666;min-width:300px;}
+			.left2{float:left; width:200px; height:500px;margin-left:-100%;background:#999;}
+			.right2{float:left; width:200px; height:500px;margin-left:-200px;background:#999;} 
+			
+			/* 自动浮动  */
+			.box3{width: 100%;height:500px;}
+			.left3{float:left; width:200px; height:500px;background:#999;}
+			.right3{float:right; width:200px; height:500px;background:#999;} 
+			.main3{height:500px;margin:0 210px;background:#ccc;min-width:300px;}
+		</style>
+		<!-- 为了中间设置最小宽度，右侧和中间在不同分辨率过小后不出现重合的现象(ie9+) -->
+		<script type="text/javascript">
+			window.onload=function(){
+				var right1 =document.getElementById('right1')
+				var right2 =document.getElementById('right2')
+				var right3 =document.getElementById('right3')
+				var main1 =document.getElementById('main1')
+				var main2 =document.getElementById('main2')
+				var main3 =document.getElementById('main3')
+				hideRight(right1,main1);
+				hideRight(right2,main2);
+				hideRight(right3,main3);
+				window.onresize =function(){
+					hideRight(right1,main1);
+					hideRight(right2,main2);
+					hideRight(right3,main3);
+				}
+				function hideRight(right,main){
+					if(window.innerWidth < 720){
+						right.style.display='none';
+						main.style.marginRight= 0;
+					}else{
+						right.style.display='block';
+						main.style.marginRight= 210+'px';
+					}
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<!-- position方法 -->
+		<div class="box1">
+			<div class="main1" id="main1">
+				<h1>position方法实现三栏布局</h1>
+				<code>
+					.main1{margin: 0 210px;background:#ccc;height:500px;}<br>
+					.left1{position: absolute; top:0; left:0;background: #999;width:200px;height:500px;}<br>
+					.right1{position: absolute; top:0; right:0;background: #999;width:200px;height:500px;}
+				</code>
+				<p>这里的左中右三个div的顺序是可以任意调整的，这与剩下的两种方法就不一样了，需要注意一下。<br>
+				此方法的优点是，理解容易，上手简单，受内部元素影响而破坏布局的概率低，就是比较经得起折腾。<br>
+				缺点在于：如果中间栏含有最小宽度限制，或是含有宽度的内部元素，当浏览器宽度小到一定程度，会发生层重叠的情况。然而，一般情况下，除非用户显示器分辨率宽度>=1600像素，否则用户不会把浏览器缩小到1000像素以下的。以通过JS实现。。。。</p>
+			</div>
+			<div class="left1" ></div>
+			<div class="right1"id="right1"></div>
+			
+		</div>
+		
+		<br><br><br><br><br>
+
+		<!-- margin负值法  -->
+		<div class="box2">
+			<div class="main2">
+				<div id="main2">
+					<h1>margin负值法实现三栏布局</h1>
+					<code>
+						.main2{float:left; width:100%;height:500px;background:#ccc;}<br>
+						.main2 div{height:100%;margin: 0 210px;background:#666;}<br>
+						.left2{float:left; width:200px; height:500px;margin-left:-100%;background:#999;}<br>
+						.right2{float:left; width:200px; height:500px;margin-left:-200px;background:#999;} 
+					</code>
+					<p>您需要注意几个div的顺序，无论是左浮动还是右浮动，先是主体部分div，这是肯定的，至于左右两栏谁先谁后，都无所谓，我测试了IE6，Firefox，以及chrome浏览器，表现一致。<br>
+					此方法的优点：三栏相互关联，可谓真正意义上的自适应，有一定的抗性——布局不易受内部影响。<br>
+					缺点在于：相对比较难理解些，上手不容易，代码相对复杂。出现百分比宽度，过多的负值定位，如果出现布局的bug，排查不易。</p>
+				</div>
+			</div>
+			<div class="left2">left</div>
+			<div class="right2" id="right2">right</div>
+		</div>
+		
+
+		<br><br><br><br><br>
+
+		<!-- 自动浮动 -->
+		<div class="box3">
+			<div class="left3"></div>
+			<div class="right3" id="right3"></div>
+			<div class="main3" id="main3">
+				<h1>自动浮动法实现三栏布局</h1>
+				<code>
+					.left3{float:left; width:200px; height:500px;background:#999;}<br>
+					.right3{float:right; width:200px; height:500px;background:#999;} <br>
+					.main3{height:500px;margin:0 210px;background:#ccc;}
+				</code>
+				<p>这里三个div标签的顺序的关键是要把主体div放在最后，左右两栏div顺序任意。<br>
+				此方法的优点是：代码足够简洁与高效.<br>
+				不足在于：中间主体存在克星，clear:both属性。如果要使用此方法，需避免明显的clear样式。</p>
+			</div>
+		</div>
+		
+	</body>
+</html>

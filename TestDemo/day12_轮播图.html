@@ -1,0 +1,197 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>sourse/day12_轮播图</title>
+		<style>
+			body,h1{margin:0;}
+			h1{background:#f0f;height: 90px;line-height:90px;text-align:center;}
+			.banner{width:1180px;height:460px;margin:0 auto;overflow:hidden;border:2px solid red;}
+			/* .banner_bg{width: 3540px;} */
+			img{vertical-align: bottom;}
+			.banner ul{margin: -50px 0 0 1000px;}
+			.banner li{display:inline; padding: 5px;border:1px solid #ff0;cursor:pointer;}
+			.banner li:hover{background: #f00;}
+			.banner_btn{margin-top: -230px;}
+			.banner_btn span{text-decoration:none;color:#000; font: 20px "宋体";display:block;width: 24px;height:24px;background:#fff;font-weight: bold;cursor:pointer;}
+			.banner_btn .left{margin-left: 20px;}
+			.banner_btn .right{margin-left: 1130px;}
+		</style>
+	</head>
+	<body>
+		<h1>我是header部分，下面是一个banner轮播图</h1>
+		<div class="banner">
+			<div class="banner_bg">
+				<a href=""><img src="sourse/day12_banner1.jpg" width="1180" height="460"/></a><!--
+			 --><a href=""><img src="sourse/day12_banner2.jpg" width="1180" height="460"/></a><!--
+			 --><a href=""><img src="sourse/day12_banner3.jpg" width="1180" height="460"/></a><!--
+			 --><a href=""><img src="sourse/day12_banner2.jpg" width="1180" height="460"/></a>
+			</div>
+			<ul>
+				<li id="one">1</li>
+				<li id="two">2</li>
+				<li id="three">3</li>
+				<li id="four">4</li>
+			</ul>
+			<div class="banner_btn">
+				<span class="left">&lt;</span>
+				<span class="right">&gt;</span>
+			</div>
+		</div>
+
+		
+
+		<script>
+			window.onload =function(){
+				banner(3000);
+			}
+
+			/**
+			 * 根据指定的时间间隔，轮播图片
+			 * @param  {[type]} timeout [间隔的时间]
+			 */
+			function banner(timeout){
+				//1.获取banner和数字下标的容器
+				var bannerNode = document.querySelector('.banner_bg');
+				var ulNode = document.querySelector('.banner ul');
+				//2.获取banner容器内一共有多少张图片
+				var imgNum = bannerNode.children.length;
+				//3.获取图片的宽度
+				var imgWidth = document.querySelector('.banner_bg img').width;
+				//4.计算并赋值给banner容器的宽度
+				var maxWidth = imgNum * imgWidth;
+				bannerNode.style.width= maxWidth + 'px';
+
+				//5.定义一个标记来记录当前banner容器内，margin-left的值
+				var flag;
+				//6.设置时间监听函数
+				var interval = setInterval(function(){
+					flag = nextImg(flag,imgWidth,maxWidth,bannerNode);
+					setLiNum(flag,imgWidth,ulNode);
+				},timeout);
+
+				//7.向左的按钮切换
+				var leftNode = document.querySelector('.left');
+				var rightNode = document.querySelector('.right');
+
+				leftNode.onclick = function(){
+					flag = preImg(flag,imgWidth,maxWidth,bannerNode);
+					setLiNum(flag,imgWidth,ulNode);
+				}
+				//8.向右的按钮切换
+				rightNode.onclick = function(){
+					flag = nextImg(flag,imgWidth,maxWidth,bannerNode);
+					setLiNum(flag,imgWidth,ulNode);
+				}
+
+				//9.添加右下角小图标的滑动切换
+				flag = liHover(flag,imgWidth,bannerNode,ulNode)
+				//10.初始化flag
+				flag = imgWidth;
+			}
+
+			/**
+			 * 下一张（向右）图片
+			 * @param  {[number]} flag       [标记]
+			 * @param  {[number]} imgWidth   [图片宽度]
+			 * @param  {[number]} maxWidth   [图片宽度]
+			 * @param  {[object]} bannerNode [banner容器]
+			 * @return {[number]}            [新标记值]
+			 */
+			function nextImg(flag,imgWidth,maxWidth,bannerNode){
+				//1判断当前图片是否为最后一张，如果是，返回第一张
+				if(flag > maxWidth - 1){
+					flag = 0;
+				}
+				//2通过设置margin-left的负值来达到切换
+				bannerNode.style.marginLeft =  -flag +'px';
+				//3标记自加，准备下次
+				flag += imgWidth;
+				return flag;
+			}
+
+			/**
+			 * 上一张（向左）图片
+			 * @param  {[number]} flag       [标记]
+			 * @param  {[number]} imgWidth   [图片宽度]
+			 * @param  {[number]} maxWidth   [图片宽度]
+			 * @param  {[object]} bannerNode [banner容器]
+			 * @return {[number]}            [新标记值]
+			 */
+			function preImg(flag,imgWidth,maxWidth,bannerNode){
+				flag -= imgWidth*2;
+				//1判断当前图片是否为第一张，如果是，返回最后一张
+				if(flag < 0){
+					flag = maxWidth - imgWidth;
+				}
+				//2通过设置margin-left的负值来达到切换
+				bannerNode.style.marginLeft =  -flag +'px'
+				//3标记自加，准备下次
+				flag += imgWidth;
+				return flag;
+			}
+
+			/**
+			 * 鼠标滑过小图标切换指定图片
+			 * @param  {[number]} flag       [flag]
+			 * @param  {[object]} bannerNode [banner容器]
+			 * @param  {[object]} ulNode     [数字下标容器]
+			 * @return {[number]} flag       [flag的新值]
+			 */
+			function liHover(flag,imgWidth,bannerNode,ulNode){
+				
+				ulNode.addEventListener('mouseover',function(event){
+					switch(event.target.id){
+						case "one":
+							bannerNode.style.marginLeft = 0+"px";
+							setLiNum(flag,imgWidth,ulNode);
+							return imgWidth;
+						case "two":
+							bannerNode.style.marginLeft = -imgWidth+"px";
+							setLiNum(flag,imgWidth,ulNode);
+							return imgWidth*2;
+						case "three":
+							bannerNode.style.marginLeft = -imgWidth*2+"px";
+							setLiNum(flag,imgWidth,ulNode);
+							return imgWidth*3;
+						case "four":
+							bannerNode.style.marginLeft = -imgWidth*3+"px";
+							setLiNum(flag,imgWidth,ulNode);
+							return imgWidth*4;
+						default:
+							return 0;
+					}	
+				},false);
+			}
+
+			function setLiNum(flag,imgWidth,ulNode){
+				var liNum = (flag -imgWidth) / imgWidth;
+				switch(liNum){
+					case 0:
+						setBgColor(0,ulNode);
+						break;
+					case 1:
+						setBgColor(1,ulNode);
+						break;
+					case 2:
+						setBgColor(2,ulNode);
+						break;
+					case 3:
+						setBgColor(3,ulNode);
+						break;
+
+				}
+			}
+
+			function setBgColor(tag,ulNode){
+				for(var i = 0;i<ulNode.children.length;i++){
+					if(i == tag){
+						ulNode.children[i].style.background = '#f00';
+					}else{
+						ulNode.children[i].style.background = 'transparent';
+					}
+				}
+			}
+		</script>
+	</body>
+</html>

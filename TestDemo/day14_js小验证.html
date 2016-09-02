@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title></title>
+	</head>
+	<body>
+		<script>
+			function string(){
+				var a = String('aaa');
+				var b = new String('aaa');
+				var c = 'aaa';
+				console.log(a instanceof String);//fasle
+				console.log('a的类型：'+ typeof a);//string
+				console.log(b instanceof String);//true
+				console.log('b的类型：'+ typeof b);//object
+				console.log(+ c instanceof String);//false
+				console.log('c的类型：'+ typeof c);//string
+			}
+
+			function switchCaseDefault(){
+				var a = 3;
+				switch(a){
+					case 1: console.log('case1:'+a);
+					case 2: console.log('case2:'+a);
+					/*case 3: */
+					case 4: console.log('case4:'+a);
+					case 5: console.log('case5:'+a);
+					default: console.log('default:'+a);
+				}
+				/*结论：
+					1.switch语句首先去执行符合条件的case语句，然后执行其语句。如果该case语句没有设置break,则按顺序继续执行该case下面的语句（如果有的话）
+					2.如果没有符合的case的语句，则执行default语句内的语句。如果default语句没有设置break，则顺序执行default语句下面的语句（一般没有，但是如果default提前就有这种可能了）*/
+			}
+			window.onload = function(){
+				string();
+				switchCaseDefault();
+			}
+		</script>
+	</body>
+</html>

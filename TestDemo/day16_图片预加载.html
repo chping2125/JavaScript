@@ -1,0 +1,71 @@
+<!doctype>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>基于用户行为的图片等资源预加载</title>
+		<script src="sourse/jquery-2.1.4.min.js"></script>
+		<style>
+			.tab-a {
+			    display: inline-block;
+			    padding: 5px 0;
+			    margin: 0 15px;
+			    border-bottom: 3px solid transparent;
+			    color: #343;
+			    font: menu;
+			    font-size: 14px;
+			}
+			.tab .active {
+			    border-bottom-color: #019EE4;
+			    color: #019EE4;
+			}
+			.panel {
+			    padding: 15px;
+			}
+			.panel img {
+			    display: none;
+			}
+			.panel .active {
+			    display: inline-block;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="tab" class="tab">
+		    <a href="javascript:" class="tab-a active">美女1</a>
+		    <a href="javascript:" class="tab-a">美女2</a>
+		</div>
+		<div id="panel" class="panel">
+		    <img src="sourse/1.jpg" class="active">
+		    <img data-src="sourse/2.jpg">
+		</div>
+		<script>
+			var elAs = $('#tab a'), elImgs = $('#panel img');
+
+			// 选项卡点击行为
+			elAs.each(function(index) {
+			    $(this).data('index', index).click(function() {
+			        var target = elImgs.eq($(this).data('index'));    
+			        // 选项卡UI
+			        $(this).addClass('active').siblings('a').removeClass('active');
+			        // 面板显隐
+			        target.addClass('active').siblings('img').removeClass('active');    
+			    });    
+			});
+			    
+			// 本demo的最重点，hover行为预加载图片
+			elAs.on({
+			    mouseenter: function() {
+			        var target;    
+			        if (!this.preloaded) {
+			            target = elImgs.eq($(this).data('index'));
+			            // 图片地址换成真实地址
+			            target.attr('src', target.attr('data-src')).removeAttr('data-src');
+			            // 标记已加载
+			            this.preloaded = true;
+			        }
+			    }    
+			});
+
+		</script>
+	</body>
+</html>

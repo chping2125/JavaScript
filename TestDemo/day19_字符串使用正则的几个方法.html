@@ -1,0 +1,61 @@
+<!doctype>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>字符串使用正则的几个方法</title>
+		<script src="sourse/jquery-2.1.4.min.js"></script>
+		
+	</head>
+	<body>
+		<script>
+			/*match()*/
+			var str = 'cab,bat,sat,fat';
+			var matches1 = str.match(/at/);
+			
+			console.log('match返回结果的类型'+ Object.prototype.toString.call(matches1).slice(8,-1));
+			for(var i=0;i<matches1.length;i++){
+				console.log(i+'项：'+matches1[i])
+			}
+			console.log('match返回结果'+matches1);
+			console.log('match.index返回结果'+matches1.index);
+			console.log('match.input返回结果'+matches1.input);
+
+			/*search*/
+			var matches2 = str.search(/.at/);
+
+			console.log('match返回结果的类型'+ Object.prototype.toString.call(matches2).slice(8,-1));
+			console.log('search返回结果'+matches2);
+
+			/*replace*/
+			var matches3 = str.replace(/at/,'tt');
+			console.log('replace第一个参数为字符串：'+matches3);
+			var matches4 = str.replace('at','tt');
+			console.log('replace第一个参数为未加g的正则：'+matches4);
+			var matches5 = str.replace(/(a)(t)/g,"$2");
+			console.log('replace第二个参数为字符串并加特殊字符序列：'+matches5);
+
+			var matches6 = str.replace(/(a)(t)/g,function(match,n1,n2,index,input){
+				console.log('fn的第一个参数：'+match);
+				console.log('fn的第二个参数：'+n1);
+				console.log('fn的第三个参数：'+n2);
+				console.log('fn的倒数第二个参数：'+index);
+				console.log('fn的倒数第一个参数：'+input);
+				return 'aaaa';
+			});
+			console.log(matches6);
+
+			/*split*/
+			var matches7 = str.split(',');
+			console.log('split分割字符串为数组'+matches7);
+			var matches8 = str.split(',',3);
+			console.log('split分割字符串为数组,限制数组长度'+matches8);
+			var matches9 = str.split(/[^\,]+/);
+			for(var i=0;i<matches9.length;i++){
+				console.log('split分割字符串为数组,用正则匹配'+i+'项'+matches9[i]);
+			}
+			
+
+
+		</script>
+	</body>
+</html>

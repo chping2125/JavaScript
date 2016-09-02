@@ -1,0 +1,117 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>IE6BUG问题汇总</title>
+		<style>
+			body,div,h3,p{margin: 0;padding: 0;text-align: center;}
+			li{list-style:none;}
+			a{text-decoration:none;color:#333;}
+			h3{background:#666;color:red;}
+			p{float: left;width: 100%;line-height: 30px;background: #ccc;}
+			p span{color: red;font-weight: bold;}
+			.div1{width: 200px;height: 200px;background: #f00;float: left;margin-left: 20px;}
+			.div2{width: 200px;height: 200px;background: #0f0;float: left;margin-left: 20px;}
+			.div3{width: 200px;height: 200px;background: #f00;float: right;margin-right: 20px;}
+			.div4{width: 200px;height: 200px;background: #0f0;float: right;margin-right: 20px;}
+			.span1{width: 200px;height: 200px;background: #f00;float: left;margin-left: 20px;}
+			.span2{width: 200px;height: 200px;background: #0f0;float: left;margin-left: 20px;}
+
+			.jxqd img{vertical-align: bottom;}
+
+			.ul1 li{float: left;margin: 0 10px;}
+			.ul1 a{display: block;padding: 0 15px;background: #9BE8F0;}
+			.ul1 a:hover{background: #11B6C7;}
+
+			.ul2 li{height:20px;margin: 0 10px;}
+			.ul2 a{float: left;padding: 0 15px;background: #9BE8F0;}
+			.ul2 a:hover{background: #11B6C7;}
+
+		</style>
+	</head>
+	<body>
+		<div style="overflow: hidden">
+			<h3 style="">双边距BUG</h3>
+
+			<div class="div1">div1</div>
+			<div class="div2">div2</div>
+			<p>问题描述：很明显div1左侧的距离比div1和div2之间的距离大正好一倍。<br>
+				结论：所以，可以说当块状元素在ie6中，设置了左浮动并且设置了左边距,那么靠近最左边的那个盒子就会出现双边距BUG（右浮动和右边距呢？）</p>
+			<div class="div3">div3</div>
+			<div class="div4">div4</div>
+			<p>结论：最右边的盒子也存在了双边距。那么上面的结论就变成：当块元素浮动方向和margin的方向一致时，浮动方向（或者margin方向）最外边的盒子会出现双边距BUG（内联元素呢？）</p>
+			<span class="span1">span1</span>
+			<span class="span2">span2</span>
+			<p>结论：很明显不会出现，排除内联元素（还有人可能说不是还有个inline-block吗？）<br>
+				最终结论：其实设置浮动后，元素的display会隐式的改变为inline-block（不信，可以去试试。块元素设置float后，就不会独占一行了；内联元素设置浮动后，就可以设置宽高和margin了）。<br>
+				<span>解决方法:其实上面已经公布了，span元素就不会出现这个问题，那是为什么呢，因为人家以前是内联元素呀，虽然float后变成了inline-block贵族，但是还是内联元素变得，所以就不出现（解释很牵强）。所以给出现双边距BUG的浮动方盒子设置个display：inline就解决了。</span>
+			</p>
+		</div>
+		<br>
+		<br>
+		<br>
+		<div class="jx" style="overflow: hidden">
+			<h3 style="">IMG标签的间隙问题(所有浏览器都有)</h3>
+			
+			<div>
+				<img src="sourse/day04_img1.jpg" />
+				<img src="sourse/day04_img1.jpg" />
+				<img src="sourse/day04_img1.jpg" />
+			</div>
+			<div>
+				<img src="sourse/day04_img1.jpg" /> <img src="sourse/day04_img1.jpg" /> <img src="sourse/day04_img1.jpg" />
+			</div>
+			<div>
+				<img src="sourse/day04_img1.jpg" />	<img src="sourse/day04_img1.jpg" />	<img src="sourse/day04_img1.jpg" />
+			</div>
+			<p>问题描述：我上面采用的是三个div(分别占据三行),每个div内有三个img元素。很明显可以看出，同一行内的img存在间隙；而每一行之间也存在间隙，并且不同浏览器的间隙还不一样大，这是为什么呢？<br>
+				原因：先说每一行之间的间隙产生的原因，是因为块元素内包含内联元素img时，内联元素img默认是和父元素的基线对齐的，而父元素的基线和父元素的最低端是有一定距离存在的(这个距离和父元素的font-size有关，因为基线的位置和font-size有关)，所以就有间距了。另外img之间的间距又是怎么回事呢？这是因为当内联元素img之间有“回车”，“tab”,"空格"时就会出现间隙（上面的三行，就是分别用的“回车”,"空格"，“tab”产生的）。<br>
+				<span>解决方法：既然知道了原因，那就解决吧。首先去掉行间距，第一种：既然和font-size有关，那就把div的font-size：0；使div的基线到最下面（不是很明确是不是这样解释），验证过成功。但是这样的话，后续如果该div内有字体，就得重设font-size了，因为继承性。第二种：既然和基线有关，第一种方法也是解决的基线问题，那就直接设置基线不就行了。img的vertical-align: bottom;,验证成功。<br>
+				然后就是去掉img之间的间距了，那就简单了，既然和“回车”,"空格"，“tab”它三个有关系，那就删除了呗，或者加注释（看下面的实现代码），最后效果就是下面这样，虽然很丑，但是问题解决了。</span>
+			</p>
+				<br>
+				<br>
+			<div class="jxqd">
+				<!-- 去掉回车符号 -->
+				<img src="sourse/day04_img1.jpg" /><img src="sourse/day04_img1.jpg" /><img src="sourse/day04_img1.jpg" />
+			</div>
+			<div class="jxqd">
+				<!-- 通过上面提到的注释去掉 -->
+				<img src="sourse/day04_img1.jpg" /><!-- 
+			 --><img src="sourse/day04_img1.jpg" /><!--
+			 --><img src="sourse/day04_img1.jpg" /><!-- -->
+			</div>
+			<div class="jxqd">
+				<!-- 通过上面提到的注释去掉 -->
+				<img src="sourse/day04_img1.jpg" /><!-- 
+			 --><img src="sourse/day04_img1.jpg" /><!--
+			 --><img src="sourse/day04_img1.jpg" /><!-- -->
+			</div>
+			<p>记得老师说过两种方式去掉，第一种就是删除img后面的回车符号肯定（和上面提到的一样）；第二种说的是给img加上display：block;这种方法只适合一张图片占据整个我们要求的区域的情况，像我们写的单张图的banner一样，但是如果要是我例子中的这种要求（这个要求虽然也有点不太符合实际）的话，就不行了。原因是block是块元素，占据一整行的。
+			</p>
+		</div>
+		<br>
+		<br>
+		<br>
+		<div class="ul" style="overflow: hidden">
+			<h3 style="">列表和浮动的问题</h3>
+			
+			<ul class="ul1">
+				<li><a href="">首页</a></li>
+				<li><a href="">关于我们</a></li>
+				<li><a href="">联系我们</a></li>
+				<li><a href="">成功案例</a></li>
+				<li><a href="">我们的客户</a></li>
+			</ul>
+			<p>问题：在ie6中，a设置了固定高度并且display：bloxk;(开发中可能会遇到)的后，你会发现，a独占一行了，并不会像其他高版本浏览器一样的效果。<br>
+				解决方法：给a加个float：left;  或者将a的高改为line-height也可以。
+				
+			</p>
+			
+		</div>
+		<br>
+		<br>
+		<br>
+		
+	</body>
+</html>

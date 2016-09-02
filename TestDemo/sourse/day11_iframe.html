@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>高度自适应的研究</title>
+		<style>
+			html,body{margin:0; padding:0;height:100%;}
+			div{height:1000px;background:#fff;padding-left: 10px;}
+			h1{margin:0;}
+			p{line-height: 24px;}
+		</style>
+	</head>
+	<body>
+		<div>
+			<h1>典型的高度宽度自适应</h1>
+			<h2>而且是特别适合CMS的布局方式的</h2>
+			<code>
+				.top{height: 100px; background:#ccc;}<br>
+				.main{width:100%;background:#666;position:absolute;top:100px; bottom:0;}<br>
+				.left{float:left;width: 200px; background:#f00;height: 100%;}<br>
+				.right{background:#ff0;height: 100%;overflow:hidden;}
+			</code>
+			<p>
+				该页面的高度自适应布局的实现重点是一个position的使用，而其中更关键的是top和bottom的同时使用。<br>
+				通过源代码可以很清楚的看出，上面灰灰的header部分是定死高度的。而下面的内容部分（左边导航栏和右边主内容部分）是通过position布局实现的。而我的.main中设置了width:100%；是因为设置了position后，该main会脱离文档流，像浮动一样display：block隐式的变成display：inline-block;设置后就保证了我的内容部分始终是占据整个屏幕宽度的。（此时还没有铺满屏幕，因为我并没有给该部分设置高度，这也是重点所在）<br>
+				没有设置高度，怎么会出现填满除了header以外的整屏的呢？就是通过top和bottom实现的。设置的top：100px；是为了避开上面的header,而加一句bottom：0，高度自然就有了。至于原因，我也没找到。<br>
+				另外，可以很明确的看出来，该页面并没有出现横向滚动条和竖直滚动条（可能有一个是我引入的iframe的，但并不是我这个页面的），没有出现竖直滚动条就说明我们上面的高度自适应是正确的，整个页面充满全屏。而没有横向滚动条则说明我们的宽度自适应也是正确的。那这个是怎样实现的呢？很简单，两列布局，左边固定，右边自适应有很多种方法，这里我使用的是，左边浮动，右边加一句overflow：hidden，出发了bfc就OK了！
+			</p>
+			<h1>改方法适合ie8+，chrome、Firefox（opera和苹果没测）</h1>
+		</div>
+	</body>
+</html>
