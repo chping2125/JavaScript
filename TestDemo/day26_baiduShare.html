@@ -1,0 +1,109 @@
+<!doctype>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>百度分享使用测试</title>
+	</head>
+	<body>
+
+		<div class="bdsharebuttonbox" data-tag="share_1">
+			<a href="#" class="bds_more" data-cmd="more"></a>
+			<a href="#" class="bds_count" data-cmd="count"></a>
+			<a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+			<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+			<a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
+			<a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a>
+			<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+		</div>
+		<div style="height:200px"></div>
+		<img src="http://chping.website/images/http/img1.png" data-tag="img1"/>
+		<img src="http://chping.website/images/http/img2.png"/>
+		<p>
+			用户将网站内容分享到第三方网站,第三方网站的用户点击专有的分享链接,从第三方网站带来社会化流量。 提升网页抓取速度 使用了百度分享的网页可以更快地被百度爬虫发用户将网站内容分享到第三方网站,第三方网站的用户点击专有的分享链接,从第三方网站带来社会化流量。 提升网页抓取速度 使用了百度分享的网页可以更快地被百度爬虫发...用户将网站内容分享到第三方网站,第三方网站的用户点击专有的分享链接,从第三方网站带来社会化流量。 提升网页抓取速度 使用了百度分享的网页可以更快地被百度爬虫发...
+		</p>
+		<div class="bdsharebuttonbox" data-tag="share_2">
+			<a href="#" class="bds_more" data-cmd="more"></a>
+			<a href="#" class="bds_count" data-cmd="count"></a>
+			<a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+			<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+			<a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
+			<a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a>
+			<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+		</div>
+
+		<script>
+			/**
+			 * [_bd_share_config 配置对象]
+			 * @type {Object}
+			 *
+			 * 1.common：通用设置将作用于所有分享类型（按钮/图片/画词）
+			 * 			可将通用设置放于此处，如分享url等。
+			 *
+			 * 2.share:分享按钮设置
+			 * 3.side:有则加载侧边栏分享按钮，去掉该属性，则没有侧边栏。
+			 * 4.image:图片分享设置
+			 * 5.selectShare:画词分享
+			 */
+			window._bd_share_config={
+				"common":{
+					"bdSnsKey":{},
+					"bdText":"my share content",//分享内容--标题
+					"bdUrl":"http://chping.website",//分享的Url地址--网址
+					"bgDesc":"my share Desc",//分享描述
+					"bdMini":"2",//下拉浮层中分享按钮的列数
+					"bdMiniList":false,//自定义下拉浮层中的分享按钮类型和排列顺序。
+					"bdPic":"http://chping.website/images/http/img1.png",//分享图片(绝对路径)
+					"bdStyle":"1",//0/1/2三种按钮图标
+					"bdSize":"32",//按钮大小16/24/32
+					"bdSign":"",//是否进行回流统计。
+									//'on': 默认值，使用正常方式挂载回流签名（#[数字签名]）
+									//'off': 关闭数字签名，不统计回流量
+									//'normal': 使用&符号连接数字签名，不破坏原始url中的#锚点
+					"onBeforeClick":function(cmd,config){
+						console.log(cmd);
+						console.log(config)
+					},//在用户点击分享按钮时执行代码，更改配置。
+					//cmd为分享目标id，config为当前设置，返回值为更新后的设置。
+					"onAfterClick":function(cmd){
+						console.log(cmd);
+					},
+					"bdPopupOffsetLeft":0,//下拉浮层的y偏移量
+					"bdPopupOffsetTop":50//下拉浮层的x偏移量
+				},
+				"share":[{
+						"tag" : "share_1",//表示该配置只会应用于data-tag值一致的分享按钮。如果不设置tag，该配置将应用于所有分享按钮。
+						"bdSize" : 32,//分享按钮的尺寸
+						"bdCustomStyle":""//自定义样式，引入样式文件
+						},
+						{
+						"tag" : "share_2",
+						"bdSize" : 16/*,
+						"bdCustomStyle":"sourse/day25.css"*/
+					}],
+				"slide":[{
+					bdImg : 4,//0-8九种颜色的分享按钮
+					bdPos : "right",//分享按钮的位置
+					bdTop : 200//分享按钮距离顶端的距离
+				},
+				{
+					bdImg : 2,
+					bdPos : "left",
+					bdTop : 100
+				}],
+				"image":[{
+					"tag":"img1",//定位到图片的通过data-tag
+					"viewList":["qzone","tsina","tqq","renren","weixin"],//自定义展示层中的分享按钮类型和排列顺序。
+					"viewText":"分享到：",
+					"viewType":"list",//图片分享按钮样式。list｜collection
+					"viewPos":"top",//top｜bottom	图片分享展示层的位置。
+					"viewColor":"black",//black｜white	图片分享展示层的背景颜色。
+					"viewSize":"16",//16｜24｜32	图片分享展示层的图标大小。
+				}],
+				"selectShare":{
+					"bdContainerClass":null,//自定义划词分享的激活区域
+					"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]//自定义弹出层分享按钮
+				}
+			};
+			with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+	</body>
+</html>
