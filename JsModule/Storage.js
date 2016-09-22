@@ -42,24 +42,35 @@ function clearStorage(type,key){
   var storage = checkoutStorage(type)
   if(storage != null){
     if(key != undefined){
-      if(confirm('你确定要删除当前同源路径下的'+type+'Storage的'+key+'数据吗？')){
-        storage.removeItem(key);
-        if(storage.getItem(key) == null){
-          return true;
-        }else{
-          //删除不成功回调继续删除
-          clearStorage(type,key);
+      var flag = storage.getItem(key);
+      if(flag !=null){
+        //当要删除兑现存在的时候继续执行
+        if(confirm('你确定要删除当前同源路径下的'+type+'Storage的'+key+'数据吗？')){
+          storage.removeItem(key);
+          if(storage.getItem(key) == null){
+            return true;
+          }else{
+            //删除不成功回调继续删除
+            clearStorage(type,key);
+          }
         }
+      }else{
+        return true;
       }
     }else{
-      if(confirm('你确定要删除所有当前同源路径下的'+type+'Storage的数据吗？')){
-        storage.clear();
-        if(storage.length == 0){
-          return true;
-        }else{
-          //删除不成功回调继续删除
-          clearStorage(type,key);
+      var flag = storage.getItem(key);
+      if(flag !=null){
+        if(confirm('你确定要删除所有当前同源路径下的'+type+'Storage的数据吗？')){
+          storage.clear();
+          if(storage.length == 0){
+            return true;
+          }else{
+            //删除不成功回调继续删除
+            clearStorage(type,key);
+          }
         }
+      }else{
+        return true;
       }
     }
   }else{
@@ -96,3 +107,9 @@ function checkoutStorage(type){
     return  null;
   }
 }
+
+//模块定义(根据需要开启)
+// module.exports = {
+//   "getOrSetStorage":getOrSetStorage,
+//   "clearStorage":clearStorage
+// }
