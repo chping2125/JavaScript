@@ -2,14 +2,114 @@
 <html>
 	<head>
 		<meta charset="utf-8"/>
-		<title>百度分享使用测试</title>
+		<title>background-origin与clip的验证</title>
 	</head>
 	<body>
-
-		<script type="text/javascript">
-			if(window.WebSocket){
-
+		<style>
+			div{
+				background: #f00;
+				width: 100px;
+				height: 100px;
+				padding: 20px;
+				border: 20px dotted #000;
+				margin: 20px;
+				display: inline-block;
 			}
-		</script>
+			.img{
+				background: url(sourse/day16_img1.jpg) no-repeat;
+				color: red;
+			}
+			.div2{
+				background-origin: content-box;
+			}
+			.div3{
+				background-origin: padding-box;
+			}
+			.div4{
+				background-origin: border-box;
+			}
+			.div5{
+				background-origin: margin-box;
+			}
+			.div6{
+				
+			}
+			.div7{
+				background-clip: content-box;
+			}
+			.div8{
+				background-clip: padding-box;
+			}
+			.div9{
+				background-clip: border-box;
+			}
+			.div10{
+				background-clip: margin-box;
+			}
+
+			.div11{
+				background-origin: padding-box;
+				background-clip: content-box;
+			}
+			.div12{
+				background-origin: border-box;
+				background-clip: content-box;
+			}
+
+			.div13{
+				background-origin: content-box;
+				background-clip: padding-box;
+			}
+			.div14{
+				background-origin: border-box;
+				background-clip: padding-box;
+			}
+		</style>
+		<h1>background-origin</h1>
+		<div class="div1">默认</div>
+		<div class="div2">origin：content-box</div>
+		<div class="div3">origin：padding-box</div>
+		<div class="div4">origin：border-box</div>
+		<div class="div5">origin：margin-box（不存在这种，只是实验）</div>
+		<h1>background-clip</h1>
+		<div class="div6">默认</div>
+		<div class="div7">clip:content-box</div>
+		<div class="div8">clip:padding-box</div>
+		<div class="div9">clip:border-box</div>
+		<div class="div10">clip:margin-box（不存在这种，只是实验)</div>
+		<h1>background-clip和origin</h1>
+		<div class="div11">origin: padding/clip: content-box</div>
+		<div class="div12">origin: border-box/clip: content-box</div>
+		<div class="div13">origin: content-box/clip: padding-box</div>
+		<div class="div14">origin: boder-box/clip: padding-box</div>
+
+		<h1>图片在测试</h1>
+		<h1>background-origin</h1>
+		<div class="div1 img">默认</div>
+		<div class="div2 img">origin：content-box</div>
+		<div class="div3 img">origin：padding-box</div>
+		<div class="div4 img">origin：border-box</div>
+		<div class="div5 img">origin：margin-box（不存在这种，只是实验）</div>
+		<h1>background-clip</h1>
+		<div class="div6 img">默认</div>
+		<div class="div7 img">clip:content-box</div>
+		<div class="div8 img">clip:padding-box</div>
+		<div class="div9 img">clip:border-box</div>
+		<div class="div10 img">clip:margin-box（不存在这种，只是实验)</div>
+		<h1>background-clip和origin</h1>
+		<div class="div11 img">origin: padding/clip: content-box</div>
+		<div class="div12 img">origin: border-box/clip: content-box</div>
+		<div class="div13 img">origin: content-box/clip: padding-box</div>
+		<div class="div14 img">origin: border-box/clip: padding-box</div>
+
+		<p>
+			结论：1.origin是用来规定背景开始绘制的起始点位置，也就是背景左上角是在contentBox的左上角，还是paddingBox的左上角，还是borderBox的左上角。
+		</p>
+		<p>
+			2.clip是用来规定背景的显示范围的，也就是说那一部分可以显示背景。
+		</p>
+		<p>
+			3.知道以上两点以后，我们就知道可以利用这两个属性混合使用来达到某些用途。但是貌似，当背景为颜色的时候，有点问题。比如最开头的四个盒子，默认clip为borderBox，我们理解为，背静可以展示的区域为borderBox/paddingBox/contentBox的,那么我们应该可以通过oirgin来规定背景的起始点为paddingBox或者contentBox呀！这样应该只显示origin规定的区域内容呀，但是事实好像不是这样。但是图片是没有问题的。（补充：好像懂了，貌似确实是按照origin规定的起始位置开始绘制的，但是当绘制结束以后，发现clip要显示的区域比origin规定的区域要大，所以就又补充了其他origin没涉及到但是clip规定了的区域。图片不存在这个问题的原因大概是，图片是个整体，不能给你切一部分去填充吧。）
+		</p>
 	</body>
 </html>
