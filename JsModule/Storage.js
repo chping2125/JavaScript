@@ -20,7 +20,10 @@ function getOrSetStorage(type,key,value){
     }else{
       //取一个值
       var obj = JSON.parse(storage.getItem(key));
-      return obj.value;
+      //防止为空(当value传参为null的时候，key存在，但是Strong中不存在该数据，返回null)
+      if(obj!=null){
+        return obj.value;
+      }
     }
   }else{
     return false;
