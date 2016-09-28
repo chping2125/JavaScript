@@ -6,23 +6,25 @@
 	</head>
 	<body>
 	<script>
-		function isJSON(obj) {
-	        return typeof obj === "object" && Object.prototype.toString.call(obj).toLowerCase() && !obj.length;
-	    }
-	    function a(){
+		var a;
+		var b = {
 
-	    }
-	    var b = new Object();
-	    var c = [1,2];
-	    var d = {
-	    	a: 1
-	    }
-	    console.log(isJSON(a))
-	    console.log(isJSON(b))
-	    console.log(isJSON(c))
-	    console.log(isJSON(d))
-	
-		console.log(JSON)
+		}
+		var c = function fn(){
+
+		}
+		function fn2(name){
+			this.name =name;
+		}
+
+		function fn3(name){
+			fn2.call(this,name)
+		}
+
+		var e = new fn3('a');
+
+		var d = new fn2();
+		alert(d.hasOwnProperty('constructor'));
 	</script>
 	</body>
 </html>
