@@ -1,0 +1,107 @@
+<!doctype>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>js 实参按值传递探究</title>
+	</head>
+	<body >
+		<h4>event.js</h4>
+		<pre>
+			<code>
+				var tpls = require("../tpls/event.string");
+				//1.加载结构
+				var node = document.querySelector('body');
+				node.innerHTML += tpls;
+
+				//2.声明module
+				var app = angular.module('myApp', ['ngRoute']);
+
+				app.controller('topScope',function($scope){
+				  //1.处理自组建传上来的值
+				  $scope.$on("secondScopeData",function(e){
+				    $scope.secondEmitData = e.targetScope.data
+				    console.log('top:'+$scope.secondEmitData);
+				    //父组件收到子组件传过来的值，可以阻止继续上传
+				    e.stopPropagation();
+				  });
+				  //2.将自组建传过来的值广播给子组件
+				  //设置延迟的原因是下面的节点还没有创建，所以不延迟，下面不会拿到数据
+				  setTimeout(function(){
+				    $scope.$broadcast('secondScopeDataBroadcast');
+				  },100);
+				});
+
+				app.controller('secondScope',function($scope){
+				  $scope.data = 'secondScopeData';
+				  this.thisData = 'secondScopeData';
+				  //1.设置一个事件用来上传和获取数据
+				  $scope.$on("secondScopeData",function(e){
+				    console.log('second:'+e.targetScope.data);
+				  });
+				  //2.上传数据给父组件
+				  $scope.$emit("secondScopeData");
+				  //3.广播数据给子组件
+				  setTimeout(function(){
+				    $scope.$broadcast("secondScopeData");
+				  }, 100)；
+				});
+
+				app.controller('thirdScope',function($scope){
+				  //获取一下父组件传下来的值
+				  $scope.$on("secondScopeData",function(e){
+				    console.log('thirdEvent:'+e.targetScope.data);
+				  });
+				});
+
+				app.controller('fourScope',function($scope){
+				  //获取一下父组件传下来的值
+				  $scope.$on("secondScopeData",function(e){
+				    console.log('fourEvent:'+e.targetScope.data);
+				  });
+				});
+
+				app.controller('secondSiblingScope',function($scope){
+				  // $scope.$on("secondScopeData",function(e){
+				  //   console.log('secondSiblingEvent:'+e.targetScope.data);
+				  // });
+				});
+
+				app.controller('secondSiblingChildScope',function($scope){
+				  //获取一下父组件传下来的值
+				  $scope.$on("secondScopeDataBroadcast",function(e){
+				    console.log('secondSiblingChildEvent:'+e.targetScope.secondEmitData);
+				  });
+				});
+			</code>
+		</pre>
+		<hr>
+		<h4>event.string</h4>
+		<pre>
+			<code>
+				<div>
+				  <div ng-controller="topScope as top">
+				    <span>"$scopeTopScope总获取子级的$scope.data:"{{data}}</span><br>
+				    <span>"thisTopScope总获取子级的thisData:"{{second.thisData}}</span><br>
+				    <span>"thisTopScope总获取子级的thisData:"{{thisData}}</span><hr>
+				    <div ng-controller="secondScope as second">
+				      <span>"$scopeSecondScope:"{{data}}</span><br>
+				      <span>"thisSecondScope:"{{second.thisData}}</span><hr>
+				      <div ng-controller="thirdScope as third">
+				        <span>"$scopeThirdScope总获取父级的$scope.data:"{{data}}</span><br>
+				        <span>"thisThirdScope总获取父级的thisData:"{{second.thisData}}</span><br>
+				        <span>"thisThirdScope总获取父级的thisData:"{{thisData}}</span><hr>
+				        <div ng-controller="fourScope as four"></div>
+				      </div>
+				    </div>
+				    <div ng-controller="secondSiblingScope as secondSibling">
+				      <div ng-controller="secondSiblingChildScope as secondSiblingChild">
+
+				      </div>
+				    </div>
+				  </div>
+				</div>
+
+			</code>
+		</pre>
+	</body>
+</html>

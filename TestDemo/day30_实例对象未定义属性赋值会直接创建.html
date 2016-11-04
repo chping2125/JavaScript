@@ -1,0 +1,28 @@
+<!doctype>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>js 实参按值传递探究</title>
+	</head>
+	<body >
+		<script>
+			function Outer() {
+			    this.a = 1;
+			}
+
+			function Inner() {
+			}
+
+			var outer = new Outer();
+			Inner.prototype = outer;
+			var inner = new Inner();
+
+			inner.a = inner.a + 1;
+			//此时inner是没有a这个属性的，这样赋值会在inner上面创建一个a属性
+			//即在实例上获取一个属性时，如果没有可以向上去原型链寻找；但是赋值时，如果不存在会直接创建一个属性在该实例对象上。
+
+			console.log(inner)
+			console.log(outer)
+		</script>
+	</body>
+</html>
